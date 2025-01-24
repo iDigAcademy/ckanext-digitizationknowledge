@@ -1,0 +1,14 @@
+# digitizationknowledge-js:
+#   filter: rjsmin
+#   output: ckanext-digitizationknowledge/%(version)s-digitizationknowledge.js
+#   contents:
+#     - js/digitizationknowledge.js
+#   extra:
+#     preload:
+#       - base/main
+
+# digitizationknowledge-css:
+#   filter: cssrewrite
+#   output: ckanext-digitizationknowledge/%(version)s-digitizationknowledge.css
+#   contents:
+#     - css/digitizationknowledge.css
