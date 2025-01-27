@@ -1,0 +1,58 @@
+{% ckan_extends %}
+
+{% block breadcrumb_content %}
+  <li class="active">
+    {% if dataset_type == 'dataset' %}
+      {{ _("Digitization Resource") }}
+    {% else %}
+      {{ h.nav_link(_(dataset_type.title() + 's'), named_route='%s.search' % dataset_type) }}
+    {% endif %}
+  </li>
+{% endblock %}
+
+{% block page_primary_action%}
+{% if h.check_access('package_create') %}
+<div class="page_primary_action">
+  <!-- {% snippet 'snippets/add_dataset.html', dataset_type=dataset_type %} -->
+
+  <!-- Dropdown Menu for Extra Dataset Types -->
+  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+  {{ _('Add Digitization Resource') }}
+  </button>
+  <ul class="dropdown-menu">
+    <!-- Manually Define Additional Dataset Types -->
+    <li>
+      <a class="dropdown-item" href="{{ h.url_for('journal-article.new') }}">
+      {{ _('Journal Article') }}
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="{{ h.url_for('web-resource.new') }}">
+      {{ _('Web-Resource') }}
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="{{ h.url_for('publication-general.new') }}">
+      {{ _('Publication General') }}
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="{{ h.url_for('learning-resource.new') }}">
+      {{ _('Learning Resource') }}
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="{{ h.url_for('resource-hub.new') }}">
+      {{ _('Resource Hub') }}
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="{{ h.url_for('software-application.new') }}">
+      {{ _('Software Application') }}
+      </a>
+    </li>
+  </ul>
+
+</div>
+{% endif %}
+{%endblock%}

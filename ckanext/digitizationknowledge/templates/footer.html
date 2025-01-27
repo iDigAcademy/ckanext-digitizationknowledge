@@ -1,0 +1,24 @@
+{% ckan_extends %}
+
+{% block footer_content %}
+
+<div class="row mt-4">
+  <div class="col-12 text-center">
+    <div class="d-flex justify-content-center flex-wrap gap-3">
+      <a href="https://www.idigbio.org/" target="_blank">
+        <img src="{{ h.url_for_static('/logos/idigbio_logo.png') }}" alt="IdigBio Logo" class="img-fluid" style="max-height: 50px; max-width: auto;">
+      </a>
+      <a href="https://digitizationacademy.org/" target="_blank">
+        <img src="{{ h.url_for_static('/logos/digitization_academy.svg') }}" alt="Digitization Academy" style="width: 170px;">
+      </a>
+      <a href="https://www.nsf.gov/" target="_blank">
+        <img src="{{ h.url_for_static('/logos/nsf_logo.svg') }}" alt="NSF logo" style="width: 170px;">
+      </a>
+    </div>
+  </div>
+</div>  
+{{ super() }}
+
+{%endblock%}
+
+{% block footer_lang%}{% endblock %}
