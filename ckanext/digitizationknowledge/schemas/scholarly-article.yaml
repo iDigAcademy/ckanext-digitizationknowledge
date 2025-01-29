@@ -1,5 +1,5 @@
 scheming_version: 2
-dataset_type: journal-article
+dataset_type: scholarly-article
 about: A reimplementation of the CKAN dataset schema for scholarly articles
 about_url: https://github.com/fpichardom/ckan_modified_schemas
 
@@ -54,24 +54,24 @@ dataset_fields:
   form_placeholder: Joe Bloggs
   display_property: dc:creator
 
-- field_name: journal
-  label: Journal
+- field_name: publisher
+  label: Publisher
   required: True
   form_placeholder: Philosophical Transactions of the Royal Society B Biological Sciences
   display_property: schema:publisher
 
-- field_name: journal_abbreviation
+- field_name: publisher_abbreviation
   label: Journal Abbreviation
   form_placeholder: Phil. Trans. R. Soc. B
   display_property: schema:publisher
 
-- field_name: volume
-  label: Volume
+- field_name: volume_number
+  label: Volume Number
   validators: int_validator
   display_property: schema:volumeNumber
 
-- field_name: issue
-  label: Issue
+- field_name: issue_number
+  label: Issue Number
   display_property: schema:issueNumber
 
 - field_name: date_published
@@ -80,8 +80,8 @@ dataset_fields:
   display_property: schema:datePublished
   help_text: If the publication has only year then use the first of January as filler (eg., 01-01-2025)
 
-- field_name: pages
-  label: pages
+- field_name: pagination
+  label: Pagination
   form_placeholder: 1-5
   display_property: schema:pagination
 
