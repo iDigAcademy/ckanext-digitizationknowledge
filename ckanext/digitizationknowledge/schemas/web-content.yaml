@@ -1,6 +1,6 @@
 scheming_version: 2
-dataset_type: web-resource
-about: A reimplementation of the CKAN dataset schema for journal articles
+dataset_type: web-content
+about: A reimplementation of the CKAN dataset schema for web-content
 about_url: https://github.com/fpichardom/ckan_modified_schemas
 
 
@@ -98,15 +98,11 @@ dataset_fields:
   label: Category
   preset: select
   display_property: schema:category
-  choices:
-  - value: protocol
-    label: Protocol
-  - value: documentation
-    label: Documentation
-  - value: guide
-    label: Guide
-  - value: blog
-    label: Blog
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: web_content_category
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: tag_string
   label: Tags
@@ -118,66 +114,50 @@ dataset_fields:
   label: Task Clusters
   help_text:
   preset: multiple_select
-  choices:
-  - value: pre-digitization_curation
-    label: Pre Digitization Curation
-  - value: image_capture
-    label: Image Capture
-  - value: image_processing
-    label: Image Processing
-  - value: digital_data_capture
-    label: Digital Data Capture
-  - value: georeferencing
-    label: Georeferencing
-  - value: project_design_and_management
-    label: Project Design and Management
-  - value: digitization_general
-    label: Digitization General
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task_clusters
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: task
   label: Task
   preset: multiple_select
-  choices:
-  - value: whole-drawer imaging
-    label: Whole-drawer imaging
-  - value: label imaging
-    label: Label imaging
-  - value: quality control
-    label: Quality Control
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: preparations
   label: Preparations
   preset: multiple_select
   display_property: dwc:preparations
-  choices:
-  - value: flat sheets and packets
-    label: Flat Sheets and Packets
-  - value: herbarium sheets
-    label: Herbarium Sheets
-  - value: pinned things
-    label: Pinned Things in Trays and Drawers
-  - value: pinned dried insects
-    label: Pinned Dried Insects
-  - value: things in spirits
-    label: Things in Spirits in Jars
-  - value: three-dimensional objects
-    label: Three-dimensional Objects in Trays and Boxes
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: preparations
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: audience
   label: Audience
   preset: select
   display_property: schema:audience
-  choices:
-  - value: biodiversity specific
-    label: Biodiversity Specific
-  - value: general
-    label: General
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: audience
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: discipline
   label: Discipline
   preset: multiple_select
-  display_property: ltc:discipline 
-
+  display_property: ltc:discipline
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: discipline
+  datastore_choices_columns:
+    value: value
+    label: label
 
 resource_fields:
 
@@ -190,6 +170,12 @@ resource_fields:
   label: Name
   form_placeholder: eg. January 2011 Gold Prices
   display_property: dc:title
+
+- field_name: version
+  label: Version
+  validators: ignore_missing unicode_safe package_version_validator
+  form_placeholder: '1.0'
+  display_property: schema:version
 
 - field_name: description
   label: Description
