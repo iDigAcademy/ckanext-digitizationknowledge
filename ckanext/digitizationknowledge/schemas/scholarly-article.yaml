@@ -42,7 +42,7 @@ dataset_fields:
   display_property: dc:creator
 
 - field_name: author_email
-  label: Author Email
+  label: First Author Email
   form_placeholder: joe@example.com
   display_property: dc:creator:email
   display_snippet: email.html
@@ -61,13 +61,12 @@ dataset_fields:
   display_property: schema:publisher
 
 - field_name: publisher_abbreviation
-  label: Journal Abbreviation
+  label: Publisher Abbreviation
   form_placeholder: Phil. Trans. R. Soc. B
   display_property: schema:publisher
 
 - field_name: volume_number
   label: Volume Number
-  validators: int_validator
   display_property: schema:volumeNumber
 
 - field_name: issue_number
@@ -90,6 +89,16 @@ dataset_fields:
   form_snippet: markdown.html
   form_placeholder: eg. Some useful notes about the data
 
+- field_name: category
+  label: Category
+  preset: select
+  display_property: schema:category
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: scholarly_article_category
+  datastore_choices_columns:
+    value: value
+    label: label
+
 - field_name: tag_string
   label: Tags
   preset: tag_string_autocomplete
@@ -100,80 +109,50 @@ dataset_fields:
   label: Task Clusters
   help_text:
   preset: multiple_select
-  choices:
-  - value: pre-digitization_curation
-    label: Pre Digitization Curation
-  - value: image_capture
-    label: Image Capture
-  - value: image_processing
-    label: Image Processing
-  - value: digital_data_capture
-    label: Digital Data Capture
-  - value: georeferencing
-    label: Georeferencing
-  - value: project_design_and_management
-    label: Project Design and Management
-  - value: digitization_general
-    label: Digitization General
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task_clusters
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: task
   label: Task
   preset: multiple_select
-  choices:
-  - value: whole-drawer imaging
-    label: Whole-drawer imaging
-  - value: label imaging
-    label: Label imaging
-  - value: quality control
-    label: Quality Control
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: preparations
   label: Preparations
   preset: multiple_select
   display_property: dwc:preparations
-  choices:
-  - value: flat sheets and packets
-    label: Flat Sheets and Packets
-  - value: herbarium sheets
-    label: Herbarium Sheets
-  - value: pinned things
-    label: Pinned Things in Trays and Drawers
-  - value: pinned dried insects
-    label: Pinned Dried Insects
-  - value: things in spirits
-    label: Things in Spirits in Jars
-  - value: three-dimensional objects
-    label: Three-dimensional Objects in Trays and Boxes
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: preparations
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: audience
   label: Audience
   preset: select
   display_property: schema:audience
-  choices:
-  - value: biodiversity specific
-    label: Biodiversity Specific
-  - value: general
-    label: General
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: audience
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: discipline
   label: Discipline
   preset: multiple_select
   display_property: ltc:discipline
-  choices:
-  - value: botany
-    label: Botany
-  - value: botany - seed plants
-    label: Botany - Seed Plants
-  - value: entomology
-    label: Entomology
-  - value: paleontology
-    label: Paleontology
-  - value: zoology - vertebrates
-    label: Zoology - Vertebrates
-  - value: ornithology
-    label: Ornithology
-  - value: ichthyology
-    label: Ichthyology
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: discipline
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: owner_org
   label: Organization
