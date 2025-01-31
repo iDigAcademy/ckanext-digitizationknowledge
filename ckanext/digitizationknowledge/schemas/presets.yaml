@@ -27,6 +27,6 @@ presets:
 - preset_name: digitizationknowledge_dataset_name
   values:
     field_name: name
-    form_snippet: text.html
+    form_snippet: null
     display_snippet: null
     validators: if_empty_same_as(id) not_empty unicode_safe digitizationknowledge_validate_generate_uuid
