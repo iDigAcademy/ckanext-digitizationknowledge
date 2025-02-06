@@ -1,7 +1,7 @@
 scheming_version: 2
 dataset_type: software-application
-about: A reimplementation of the CKAN dataset schema for journal articles
-about_url: https://github.com/fpichardom/ckan_modified_schemas
+about: A reimplementation of the CKAN dataset schema for software-application
+about_url: https://github.com/iDigAcademy/ckanext-digitizationknowledge
 
 
 dataset_fields:
@@ -28,19 +28,13 @@ dataset_fields:
   display_snippet: link.html
   required: True
 
-- field_name: archived_at
-  label: Archived At
-  form_placeholder: http://example.com/
-  display_snippet: link.html
-  display_property: schema:archivedAt
-
 - field_name: author
   label: First Author
   form_placeholder: Joe Bloggs
   display_property: dc:creator
 
 - field_name: author_email
-  label: Author Email
+  label: First Author's Email
   form_placeholder: joe@example.com
   display_property: dc:creator:email
   display_snippet: email.html
@@ -67,23 +61,14 @@ dataset_fields:
   label: Operating System
   preset: multiple_select
   display_property: schema:operatingSystem
-  choices: 
-  - value: windows
-    label: Windows
-  - value: macos
-    label: MacOS
-  - value: linux
-    label: Linux
-  - value: general
-    label: General
-
-- field_name: programming_language
-  label: Programming Language
-  preset: select
-  display_property: schema:programmingLanguage
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: operating_system
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: is_accessible_for_free
-  label: Is Accessible for Free
+  label: Accessible for Free
   display_property: schema:isAccessibleForFree
   preset: radio
   choices:
@@ -129,19 +114,11 @@ dataset_fields:
   label: Category
   preset: select
   display_property: schema:category
-  choices:
-  - value: web application
-    label: Web Application
-  - value: desktop application
-    label: Desktop Application
-  - value: mobile application
-    label: Mobbile Application
-  - value: api
-    label: API
-  - value: library or package
-    label: Library or Package
-  - value: source code general
-    label: Source Code General
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: software_application_category
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: tag_string
   label: Tags
@@ -153,65 +130,59 @@ dataset_fields:
   label: Task Clusters
   help_text:
   preset: multiple_select
-  choices:
-  - value: pre-digitization_curation
-    label: Pre Digitization Curation
-  - value: image_capture
-    label: Image Capture
-  - value: image_processing
-    label: Image Processing
-  - value: digital_data_capture
-    label: Digital Data Capture
-  - value: georeferencing
-    label: Georeferencing
-  - value: project_design_and_management
-    label: Project Design and Management
-  - value: digitization_general
-    label: Digitization General
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task_clusters
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: task
   label: Task
   preset: multiple_select
-  choices:
-  - value: whole-drawer imaging
-    label: Whole-drawer imaging
-  - value: label imaging
-    label: Label imaging
-  - value: quality control
-    label: Quality Control
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: preparations
   label: Preparations
   preset: multiple_select
   display_property: dwc:preparations
-  choices:
-  - value: flat sheets and packets
-    label: Flat Sheets and Packets
-  - value: herbarium sheets
-    label: Herbarium Sheets
-  - value: pinned things
-    label: Pinned Things in Trays and Drawers
-  - value: pinned dried insects
-    label: Pinned Dried Insects
-  - value: things in spirits
-    label: Things in Spirits in Jars
-  - value: three-dimensional objects
-    label: Three-dimensional Objects in Trays and Boxes
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: preparations
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: audience
   label: Audience
   preset: select
   display_property: schema:audience
-  choices:
-  - value: biodiversity specific
-    label: Biodiversity Specific
-  - value: general
-    label: General
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: audience
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: discipline
   label: Discipline
   preset: multiple_select
-  display_property: ltc:discipline 
+  display_property: ltc:discipline
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: discipline
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: equipment
+  label: Equipment
+  preset: multiple_select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: equipment
+  datastore_choices_columns:
+    value: value
+    label: label
 
 
 resource_fields:
@@ -225,6 +196,12 @@ resource_fields:
   label: Name
   form_placeholder: eg. January 2011 Gold Prices
   display_property: dc:title
+
+- field_name: version
+  label: Version
+  validators: ignore_missing unicode_safe package_version_validator
+  form_placeholder: '1.0'
+  display_property: schema:version
 
 - field_name: description
   label: Description
