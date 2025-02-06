@@ -1,7 +1,7 @@
 scheming_version: 2
 dataset_type: web-content
 about: A reimplementation of the CKAN dataset schema for web-content
-about_url: https://github.com/fpichardom/ckan_modified_schemas
+about_url: https://github.com/iDigAcademy/ckanext-digitizationknowledge
 
 
 dataset_fields:
@@ -40,7 +40,7 @@ dataset_fields:
   display_property: dc:creator
 
 - field_name: author_email
-  label: Author Email
+  label: First Author's Email
   form_placeholder: joe@example.com
   display_property: dc:creator:email
   display_snippet: email.html
@@ -82,7 +82,7 @@ dataset_fields:
   display_property: dc:contributor
 
 - field_name: maintainer_email
-  label: Maintainer Email
+  label: Maintainer's Email
   form_placeholder: joe@example.com
   display_property: dc:contributor:email
   display_snippet: email.html
@@ -159,6 +159,15 @@ dataset_fields:
     value: value
     label: label
 
+- field_name: equipment
+  label: Equipment
+  preset: multiple_select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: equipment
+  datastore_choices_columns:
+    value: value
+    label: label
+
 resource_fields:
 
 - field_name: url
@@ -168,7 +177,7 @@ resource_fields:
 
 - field_name: name
   label: Name
-  form_placeholder: eg. January 2011 Gold Prices
+  form_placeholder: eg. DROID Workflow Modules & Task Lists
   display_property: dc:title
 
 - field_name: version
