@@ -1,14 +1,13 @@
 scheming_version: 2
 dataset_type: scholarly-article
 about: A reimplementation of the CKAN dataset schema for scholarly articles
-about_url: https://github.com/fpichardom/ckan_modified_schemas
+about_url: https://github.com/iDigAcademy/ckanext-digitizationknowledge
 
 
 dataset_fields:
 
 # our id + name fields are uuids and always equal
 
-#- preset: digitizationknowledge_dataset_id
 - field_name: id
   label: ID
   preset: digitizationknowledge_dataset_id
@@ -20,12 +19,12 @@ dataset_fields:
   label: Title
   preset: title
   display_property: dc.title
-  form_placeholder: eg. A descriptive title
+  form_placeholder: eg. A descriptive title for the digitization resource
   required: True
 
 - field_name: url
   label: Source
-  form_placeholder: http://example.com/
+  form_placeholder: https://example.com/
   display_property: schema:url
   display_snippet: link.html
   required: True
@@ -38,11 +37,12 @@ dataset_fields:
 
 - field_name: author
   label: First Author
+  required: True
   form_placeholder: Joe Bloggs
   display_property: dc:creator
-
+  
 - field_name: author_email
-  label: First Author Email
+  label: First Author's Email
   form_placeholder: joe@example.com
   display_property: dc:creator:email
   display_snippet: email.html
@@ -90,6 +90,11 @@ dataset_fields:
   form_placeholder: '1.0'
   display_property: schema:version
 
+- field_name: owner_org
+  label: Organization
+  preset: dataset_organization
+  required: True
+
 - field_name: notes
   label: Description
   form_snippet: markdown.html
@@ -97,7 +102,7 @@ dataset_fields:
 
 - field_name: category
   label: Category
-  preset: select
+  preset: multiple_select
   display_property: schema:category
   choices_helper: scheming_datastore_choices
   datastore_choices_resource: scholarly_article_category
@@ -160,11 +165,14 @@ dataset_fields:
     value: value
     label: label
 
-- field_name: owner_org
-  label: Organization
-  preset: dataset_organization
-  required: True
-
+- field_name: equipment
+  label: Equipment
+  preset: multiple_select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: equipment
+  datastore_choices_columns:
+    value: value
+    label: label
 
 resource_fields:
 
