@@ -1,0 +1,224 @@
+scheming_version: 2
+dataset_type: software-source-code
+about: A reimplementation of the CKAN dataset schema for software-source-code
+about_url: https://github.com/iDigAcademy/ckanext-digitizationknowledge
+
+
+dataset_fields:
+
+# our id + name fields are uuids and always equal
+- field_name: id
+  label: ID
+  preset: digitizationknowledge_dataset_id
+  label: ID
+
+- preset: digitizationknowledge_dataset_name
+
+- field_name: title
+  label: Title
+  preset: title
+  display_property: dc.title
+  form_placeholder: eg. A descriptive title
+  required: True
+
+- field_name: url
+  label: Source
+  form_placeholder: http://example.com/
+  display_property: schema:url
+  display_snippet: link.html
+  required: True
+
+- field_name: author
+  label: First Author
+  form_placeholder: Joe Bloggs
+  display_property: dc:creator
+
+- field_name: author_email
+  label: First Author's Email
+  form_placeholder: joe@example.com
+  display_property: dc:creator:email
+  display_snippet: email.html
+  display_email_name_field: author
+
+- field_name: other_authors
+  label: Other Authors
+  preset: multiple_text
+  form_placeholder: Joe Bloggs
+  display_property: dc:creator
+
+- field_name: date_published
+  label: Date Published
+  preset: date
+  display_property: schema:datePublished
+
+- field_name: version
+  label: Version
+  validators: ignore_missing unicode_safe package_version_validator
+  form_placeholder: '1.0'
+  display_property: schema:version
+
+- field_name: operating_system
+  label: Operating System
+  preset: multiple_select
+  display_property: schema:operatingSystem
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: operating_system
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: programming_language
+  label: Programming Language
+  preset: select
+  display_property: schema:programmingLanguage
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: programming_language
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: is_accessible_for_free
+  label: Accessible for Free
+  display_property: schema:isAccessibleForFree
+  preset: radio
+  choices:
+  - value: true
+    label: Yes
+  - value: false
+    label: No
+  validators: boolean_validator
+  output_validators: boolean_validator
+
+- field_name: copyright_holder
+  label: Copyright Holder
+
+- field_name: owner_org
+  label: Organization
+  preset: dataset_organization
+  required: True
+
+- field_name: license_id
+  label: License
+  form_snippet: license.html
+  help_text: License definitions and additional information can be found at http://opendefinition.org/
+
+- field_name: maintainer
+  label: Maintainer
+  form_placeholder: Joe Bloggs
+  display_property: dc:contributor
+
+- field_name: maintainer_email
+  label: Maintainer Email
+  form_placeholder: joe@example.com
+  display_property: dc:contributor:email
+  display_snippet: email.html
+  display_email_name_field: maintainer
+
+- field_name: notes
+  label: Description
+  form_snippet: markdown.html
+  form_placeholder: eg. Some useful notes about the data
+  display_property: schema:abstract
+
+- field_name: category
+  label: Category
+  preset: select
+  display_property: schema:category
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: software_source_code_category
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: tag_string
+  label: Tags
+  preset: tag_string_autocomplete
+  form_placeholder: eg. economy, mental health, government
+  display_property: dc:subject
+
+- field_name: task_clusters
+  label: Task Clusters
+  help_text:
+  preset: multiple_select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task_clusters
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: task
+  label: Task
+  preset: multiple_select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: preparations
+  label: Preparations
+  preset: multiple_select
+  display_property: dwc:preparations
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: preparations
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: audience
+  label: Audience
+  preset: select
+  display_property: schema:audience
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: audience
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: discipline
+  label: Discipline
+  preset: multiple_select
+  display_property: ltc:discipline
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: discipline
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: equipment
+  label: Equipment
+  preset: multiple_select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: equipment
+  datastore_choices_columns:
+    value: value
+    label: label
+
+
+resource_fields:
+
+- field_name: url
+  label: URL
+  preset: resource_url_upload
+  display_property: schema:url
+
+- field_name: name
+  label: Name
+  form_placeholder: eg. January 2011 Gold Prices
+  display_property: dc:title
+
+- field_name: version
+  label: Version
+  validators: ignore_missing unicode_safe package_version_validator
+  form_placeholder: '1.0'
+  display_property: schema:version
+
+- field_name: description
+  label: Description
+  form_snippet: markdown.html
+  form_placeholder: Some useful notes about the data
+  display_property: schema:abstract
+
+- field_name: format
+  label: Format
+  preset: resource_format_autocomplete
