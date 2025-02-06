@@ -95,6 +95,16 @@ dataset_fields:
   validators: boolean_validator
   output_validators: boolean_validator
 
+- field_name: in_language
+  label: Language
+  preset: multiple_select
+  display_property: schema:inLanguage
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: in_language
+  datastore_choices_columns:
+    value: value
+    label: label
+
 - field_name: copyright_holder
   label: Copyright Holder
 

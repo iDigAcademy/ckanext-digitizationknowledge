@@ -90,6 +90,16 @@ dataset_fields:
   form_placeholder: '1.0'
   display_property: schema:version
 
+- field_name: in_language
+  label: Language
+  preset: multiple_select
+  display_property: schema:inLanguage
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: in_language
+  datastore_choices_columns:
+    value: value
+    label: label
+
 - field_name: owner_org
   label: Organization
   preset: dataset_organization
