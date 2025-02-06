@@ -1,7 +1,7 @@
 scheming_version: 2
 dataset_type: learning-resource
-about: A reimplementation of the CKAN dataset schema for journal articles
-about_url: https://github.com/fpichardom/ckan_modified_schemas
+about: A reimplementation of the CKAN dataset schema for learning-resource
+about_url: https://github.com/iDigAcademy/ckanext-digitizationknowledge
 
 
 dataset_fields:
@@ -23,7 +23,7 @@ dataset_fields:
 
 - field_name: url
   label: Source
-  form_placeholder: http://example.com/
+  form_placeholder: https://example.com/
   display_property: schema:url
   display_snippet: link.html
   required: True
@@ -34,7 +34,7 @@ dataset_fields:
   display_property: dc:creator
 
 - field_name: author_email
-  label: Author Email
+  label: First Author's Email
   form_placeholder: joe@example.com
   display_property: dc:creator:email
   display_snippet: email.html
@@ -59,33 +59,29 @@ dataset_fields:
 
 - field_name: time_required
   label: Time Required
+  form_placeholder: 20:00:00
+  help_text: Time in HH:MM:SS
   display_property: lrmi:timeRequired
 
-- field_name: learning_mode
-  label: Learning Mode
-  display_property: schema:courseMode
-  preset: multiple_select
-  choices:
-  - value: syncronous
-    label: Syncronous
-  - value: asyncronous
-    label: Asyncronous
-  - value: mixed syncronous-asyncronous
-    label: Mixed Syncronous-Asyncronous
-  - value: requires registration
-    label: Requires Registration
+- field_name: interactivity_type
+  label: Interactivity Type
+  display_property: schema:interactivityType
+  preset: select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: learning_resource_interactivity_type
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: repeat_frequency
   label: Repeat Frequency
   display_property: schema:repeatFrequency
   preset: select
-  choices:
-  - value: on demand
-    label: On Demand
-  - value: self-paced
-    label: Self-paced
-  - value: scheduled
-    label: Scheduled
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: learning_resource_repeat_frequency
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: is_accessible_for_free
   label: Is Accessible for Free
@@ -134,13 +130,11 @@ dataset_fields:
   label: Category
   preset: select
   display_property: schema:category
-  choices:
-  - value: workshop
-    label: Workshop
-  - value: course
-    label: Course
-  - value: certification
-    label: Certification
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: learning_resource_category
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: tag_string
   label: Tags
@@ -152,80 +146,59 @@ dataset_fields:
   label: Task Clusters
   help_text:
   preset: multiple_select
-  choices:
-  - value: pre-digitization_curation
-    label: Pre Digitization Curation
-  - value: image_capture
-    label: Image Capture
-  - value: image_processing
-    label: Image Processing
-  - value: digital_data_capture
-    label: Digital Data Capture
-  - value: georeferencing
-    label: Georeferencing
-  - value: project_design_and_management
-    label: Project Design and Management
-  - value: digitization_general
-    label: Digitization General
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task_clusters
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: task
   label: Task
   preset: multiple_select
-  choices:
-  - value: whole-drawer imaging
-    label: Whole-drawer imaging
-  - value: label imaging
-    label: Label imaging
-  - value: quality control
-    label: Quality Control
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: preparations
   label: Preparations
   preset: multiple_select
   display_property: dwc:preparations
-  choices:
-  - value: flat sheets and packets
-    label: Flat Sheets and Packets
-  - value: herbarium sheets
-    label: Herbarium Sheets
-  - value: pinned things
-    label: Pinned Things in Trays and Drawers
-  - value: pinned dried insects
-    label: Pinned Dried Insects
-  - value: things in spirits
-    label: Things in Spirits in Jars
-  - value: three-dimensional objects
-    label: Three-dimensional Objects in Trays and Boxes
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: preparations
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: audience
   label: Audience
   preset: select
   display_property: schema:audience
-  choices:
-  - value: biodiversity specific
-    label: Biodiversity Specific
-  - value: general
-    label: General
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: audience
+  datastore_choices_columns:
+    value: value
+    label: label
 
 - field_name: discipline
   label: Discipline
   preset: multiple_select
   display_property: ltc:discipline
-  choices:
-  - value: botany
-  - label: Botany
-  - value: botany - seed plants
-  - label: Botany - Seed Plants
-  - value: entomology
-  - label: Entomology
-  - value: paleontology
-  - label: Paleontology
-  - value: zoology - vertebrates
-  - label: Zoology - Vertebrates
-  - value: ornithology
-  - label: Ornithology
-  - value: ichthyology
-  - label: Ichthyology
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: discipline
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: equipment
+  label: Equipment
+  preset: multiple_select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: equipment
+  datastore_choices_columns:
+    value: value
+    label: label
 
 
 resource_fields:
