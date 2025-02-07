@@ -96,7 +96,7 @@ dataset_fields:
 
 - field_name: audience
   label: Audience
-  preset: select
+  preset: multiple_select
   display_property: schema:audience
   choices_helper: scheming_datastore_choices
   datastore_choices_resource: audience
