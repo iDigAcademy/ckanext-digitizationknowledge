@@ -72,9 +72,12 @@ class DigitizationknowledgePlugin(plugins.SingletonPlugin):
         new_facets['category'] = toolkit._('Categories')
         #new_facets['task'] = toolkit._('Tasks')
 
+        facets_to_exclude = {'res_format', 'license_id'}
+
         # Add the rest of the facets
         for key, value in facets_dict.items():
-            new_facets[key] = value
+            if key not in facets_to_exclude:
+                new_facets[key] = value
 
         return new_facets
     
