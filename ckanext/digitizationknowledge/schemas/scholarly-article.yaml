@@ -112,7 +112,7 @@ dataset_fields:
 
 - field_name: category
   label: Category
-  preset: multiple_select
+  preset: select
   display_property: schema:category
   choices_helper: scheming_datastore_choices
   datastore_choices_resource: scholarly_article_category
