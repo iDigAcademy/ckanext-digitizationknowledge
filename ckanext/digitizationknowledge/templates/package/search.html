@@ -32,8 +32,8 @@
       </a>
     </li>
     <li>
-      <a class="dropdown-item" href="{{ h.url_for('publication-general.new') }}">
-      {{ _('Publication General') }}
+      <a class="dropdown-item" href="{{ h.url_for('digital-document.new') }}">
+      {{ _('Digital Document') }}
       </a>
     </li>
     <li>
@@ -42,13 +42,23 @@
       </a>
     </li>
     <li>
-      <a class="dropdown-item" href="{{ h.url_for('resource-hub.new') }}">
-      {{ _('Resource Hub') }}
+      <a class="dropdown-item" href="{{ h.url_for('event.new') }}">
+      {{ _('Event') }}
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="{{ h.url_for('video-object.new') }}">
+      {{ _('Video Object') }}
       </a>
     </li>
     <li>
       <a class="dropdown-item" href="{{ h.url_for('software-application.new') }}">
       {{ _('Software Application') }}
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="{{ h.url_for('software-source-code.new') }}">
+      {{ _('Software Source Code') }}
       </a>
     </li>
   </ul>
