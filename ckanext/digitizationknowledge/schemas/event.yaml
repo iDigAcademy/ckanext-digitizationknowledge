@@ -166,9 +166,9 @@ resource_fields:
   preset: radio
   choices:
   - value: true
-    label: Yes
+    label: "Yes"
   - value: false
-    label: No
+    label: "No"
   validators: boolean_validator
   output_validators: boolean_validator
 
