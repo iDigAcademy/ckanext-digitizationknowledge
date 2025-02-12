@@ -1,6 +1,8 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from collections import OrderedDict
+import json
+import os
 
 
 # import ckanext.digitizationknowledge.cli as cli
@@ -24,10 +26,66 @@ class DigitizationknowledgePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IFacets)
     plugins.implements(plugins.IPackageController)
 
+
+    # List of fields that should be processed as JSON lists
+     # Add fields as needed
+    JSON_LIST_FIELDS = [
+        'task_clusters',
+        'task',
+        'preparations',
+        'audience',
+        'discipline',
+        'equipment',
+        'in_language'
+        # Add more fields here
+    ]
+
+    def _process_json_list_field(self, value, field_name='unknown'):
+        """
+        Process a field that should be a JSON list of strings
+        
+        Args:
+            value: The value to process (string or list)
+            field_name: Name of field for logging purposes
+            
+        Returns:
+            list: Processed list of strings
+        """
+        print(f"Incoming {field_name}: {value} of type {type(value)}")
+        
+        try:
+            # If it's a JSON string, parse it
+            if isinstance(value, str) and value.strip().startswith('['):
+                items = json.loads(value)
+            # If it's already a list, use it as is
+            elif isinstance(value, list):
+                items = value
+            else:
+                items = []
+
+            # Ensure all items are strings and remove empty values
+            items = [str(item).strip() for item in items if item]
+            
+            print(f"Processed {field_name}: {items}")
+            return items
+            
+        except json.JSONDecodeError:
+            print(f"Error parsing JSON for {field_name}: {value}")
+            return []
+        except Exception as e:
+            print(f"Unexpected error processing {field_name}: {str(e)}")
+            return []
+
+
+
+
+
+
     # IConfigurer
 
     def update_config(self, config_):
         toolkit.add_template_directory(config_, "templates")
+        print("Registering public directory:", os.path.join(os.path.dirname(__file__), 'public'))
         toolkit.add_public_directory(config_, "public")
         toolkit.add_resource("assets", "digitizationknowledge")
 
@@ -70,7 +128,14 @@ class DigitizationknowledgePlugin(plugins.SingletonPlugin):
         new_facets = OrderedDict()
         new_facets['type'] = toolkit._('Digitization Resource Type')
         new_facets['category'] = toolkit._('Categories')
-        #new_facets['task'] = toolkit._('Tasks')
+        new_facets['task_clusters'] = toolkit._('Task Clusters')
+        new_facets['task'] = toolkit._('Tasks')
+        new_facets['preparations'] = toolkit._('Preparations')
+        new_facets['audience'] = toolkit._('Audience')
+        new_facets['discipline'] = toolkit._('Discipline')
+        new_facets['equipment'] = toolkit._('Equipment')
+        new_facets['in_language']= toolkit._('Language')
+        
 
         facets_to_exclude = {'res_format', 'license_id'}
 
@@ -88,14 +153,12 @@ class DigitizationknowledgePlugin(plugins.SingletonPlugin):
         return facets_dict
 
     def before_dataset_index(self, pkg_dict):
-        # Get the task_cluster value
-
-        # for field_name in self.JSON_LIST_FIELDS:
-        #     if field_name in pkg_dict:
-        #         pkg_dict[field_name] = self._process_json_list_field(
-        #             pkg_dict.get(field_name, ''),
-        #             field_name
-        #         )
+        for field_name in self.JSON_LIST_FIELDS:
+            if field_name in pkg_dict:
+                pkg_dict[field_name] = self._process_json_list_field(
+                    pkg_dict.get(field_name, ''),
+                    field_name
+                )
         return pkg_dict
    
     # Required methods with default implementations
