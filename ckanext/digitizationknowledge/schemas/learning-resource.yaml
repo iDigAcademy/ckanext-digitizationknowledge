@@ -59,7 +59,7 @@ dataset_fields:
 
 - field_name: time_required
   label: Time Required
-  form_placeholder: 20:00:00
+  form_placeholder: "20:00:00"
   help_text: Time in HH:MM:SS
   display_property: lrmi:timeRequired
 
