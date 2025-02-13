@@ -1,0 +1,226 @@
+scheming_version: 2
+dataset_type: book
+about: A reimplementation of the CKAN dataset schema for book
+about_url: https://github.com/iDigAcademy/ckanext-digitizationknowledge
+
+
+dataset_fields:
+
+# our id + name fields are uuids and always equal
+
+- field_name: id
+  label: ID
+  preset: digitizationknowledge_dataset_id
+  label: ID
+
+- preset: digitizationknowledge_dataset_name
+
+- field_name: title
+  label: Title
+  preset: title
+  display_property: dc.title
+  form_placeholder: eg. A descriptive title for the digitization resource
+  required: True
+
+- field_name: url
+  label: Source
+  form_placeholder: https://example.com/
+  display_property: schema:url
+  display_snippet: link.html
+  required: True
+
+- field_name: doi
+  label: DOI
+  form_placeholder: https://doi.org/10.3897/zookeys.209.3135
+  display_property: dc:identifier:doi
+  display_snippet: link.html
+
+- field_name: isbn
+  label: ISBN
+  display_property: schema:isbin
+
+- field_name: author
+  label: First Author
+  required: True
+  form_placeholder: Joe Bloggs
+  display_property: dc:creator
+  
+- field_name: author_email
+  label: First Author's Email
+  form_placeholder: joe@example.com
+  display_property: dc:creator:email
+  display_snippet: email.html
+  display_email_name_field: author
+
+- field_name: other_authors
+  label: Other Authors
+  preset: multiple_text
+  form_placeholder: Joe Bloggs
+  display_property: dc:creator
+
+- field_name: editor
+  label: Editor
+  preset: multiple_text
+  display_property: schema:editor
+
+- field_name: publisher
+  label: Publisher
+  required: True
+  form_placeholder: Philosophical Transactions of the Royal Society B Biological Sciences
+  display_property: schema:publisher
+
+- field_name: location_created
+  label: Location Created
+  display_property: schema:locationCreated
+
+- field_name: date_published
+  label: Date Published
+  preset: date
+  display_property: schema:datePublished
+  help_text: If the publication has only year then use the first of January as filler (eg., 01-01-2025)
+
+- field_name: number_of_pages
+  label: Number of Pages
+  display_property: schema:numberOfPages
+
+- field_name: book_edition
+  label: Book Edition
+  display_property: schema:bookEdition
+
+- field_name: is_part_of
+  label: Part Of
+  display_property: schema:isPartOf
+
+- field_name: version
+  label: Version
+  validators: ignore_missing unicode_safe package_version_validator
+  form_placeholder: '1.0'
+  display_property: schema:version
+
+- field_name: in_language
+  label: Language
+  preset: multiple_select
+  display_property: schema:inLanguage
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: in_language
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: owner_org
+  label: Organization
+  preset: dataset_organization
+  required: True
+
+- field_name: notes
+  label: Description
+  form_snippet: markdown.html
+  form_placeholder: eg. Some useful notes about the data
+
+- field_name: category
+  label: Category
+  preset: select
+  display_property: schema:category
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: scholarly_article_category
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: tag_string
+  label: Tags
+  preset: tag_string_autocomplete
+  form_placeholder: eg. economy, mental health, government
+  display_property: dc:subject
+
+- field_name: task_clusters
+  label: Task Clusters
+  help_text:
+  preset: multiple_select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task_clusters
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: task
+  label: Task
+  preset: multiple_select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: task
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: preparations
+  label: Preparations
+  preset: multiple_select
+  display_property: dwc:preparations
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: preparations
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: audience
+  label: Audience
+  preset: multiple_select
+  display_property: schema:audience
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: audience
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: discipline
+  label: Discipline
+  preset: multiple_select
+  display_property: ltc:discipline
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: discipline
+  datastore_choices_columns:
+    value: value
+    label: label
+
+- field_name: equipment
+  label: Equipment
+  preset: multiple_select
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: equipment
+  datastore_choices_columns:
+    value: value
+    label: label
+
+resource_fields:
+
+- field_name: url
+  label: URL
+  preset: resource_url_upload
+
+- field_name: doi
+  label: DOI
+  display_property: dc:identifier:doi
+  display_snippet: link.html
+
+- field_name: isbn
+  label: ISBN
+  display_property: schema:isbn
+
+- field_name: version
+  label: Version
+  validators: ignore_missing unicode_safe package_version_validator
+  form_placeholder: '1.0'
+  display_property: schema:version
+  
+- field_name: name
+  label: Name
+  form_placeholder: eg. January 2011 Gold Prices
+
+- field_name: description
+  label: Description
+  form_snippet: markdown.html
+  form_placeholder: Some useful notes about the data
+
+- field_name: format
+  label: Format
+  preset: resource_format_autocomplete
