@@ -1,0 +1,38 @@
+{% ckan_extends %}
+
+{% block page_primary_action %}
+<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    {{ _('Add Digitization Resource') }}
+    </button>
+    <ul class="dropdown-menu">
+      <!-- Manually Define Additional Dataset Types -->
+      <li>
+        {% link_for _('Book') , named_route='book' ~ '.new', group=group_dict.id, class_='dropdown-item'%}        
+      </li>
+      <li>
+        {% link_for _('Digital Document') , named_route='digital-document' ~ '.new', group=group_dict.id, class_='dropdown-item'%}
+      </li>
+      <li>
+        {% link_for _('Event') , named_route='event' ~ '.new', group=group_dict.id, class_='dropdown-item'%}
+      </li>
+      <li>
+        {% link_for _('Learning Resource') , named_route='learning-resource' ~ '.new', group=group_dict.id, class_='dropdown-item'%}
+      </li>
+      <li>
+        {% link_for _('Scholarly Article') , named_route='scholarly-article' ~ '.new', group=group_dict.id, class_='dropdown-item'%}
+      </li>
+      <li>
+        {% link_for _('Software Application') , named_route='software-application' ~ '.new', group=group_dict.id, class_='dropdown-item'%}
+      </li>
+      <li>
+        {% link_for _('Software Source Code') , named_route='software-source-code' ~ '.new', group=group_dict.id, class_='dropdown-item'%}
+      </li>
+      <li>
+        {% link_for _('Video Object') , named_route='video-object' ~ '.new', group=group_dict.id, class_='dropdown-item'%}
+      </li>
+      <li>
+        {% link_for _('Web Content') , named_route='web-content' ~ '.new', group=group_dict.id, class_='dropdown-item'%}
+      </li>
+    </ul>
+
+{% endblock %}
