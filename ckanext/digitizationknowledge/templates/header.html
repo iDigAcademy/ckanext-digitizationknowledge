@@ -1,5 +1,21 @@
 {% ckan_extends %}
 
+{% block header_logo %}
+  {% if g.site_logo %}
+    <a class="logo" href="{{ h.url_for('home.index') }}">
+      <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}"
+           title="{{ g.site_title }}" />
+    </a>
+  {% else %}
+    <h1>
+      <a class="navbar-brand text-white fs-1" href="{{ h.url_for('home.index') }}">{{ g.site_title }}</a>
+    </h1>
+    {% if g.site_description %}
+      <h2>{{ g.site_description }}</h2>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
 {% block header_site_navigation_tabs %}
     {% set org_type = h.default_group_type('organization') %}
     {% set group_type = h.default_group_type('group') %}
