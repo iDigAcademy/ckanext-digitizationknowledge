@@ -68,8 +68,14 @@ dataset_fields:
 
 - field_name: is_part_of
   label: Part Of
-  form_placeholder: Digital Data Conference
   display_property: schema:isPartOf
+  display_snippet: link.html
+  help_text: Internal link to the resource this is part of
+
+- field_name: is_part_of_title
+  label: Part Of (Title)
+  display_property: schema:isPartOf
+  help_text: Title of the resourse this is part of
 
 - field_name: version
   label: Version
