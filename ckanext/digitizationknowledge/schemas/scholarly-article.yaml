@@ -17,14 +17,14 @@ dataset_fields:
 
 - field_name: title
   label: Title
-  preset: title
   display_property: dc.title
-  form_placeholder: eg. A descriptive title for the digitization resource
+  form_placeholder: e.g., a descriptive title
+  validators: unicode_safe digitizationknowledge_required
   required: True
 
 - field_name: url
   label: Source
-  form_placeholder: https://example.com/
+  form_placeholder: e.g., https://digitizationknowledge.org
   display_property: schema:url
   display_snippet: link.html
   required: True

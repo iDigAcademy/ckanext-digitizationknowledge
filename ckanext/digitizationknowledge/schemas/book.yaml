@@ -17,21 +17,21 @@ dataset_fields:
 
 - field_name: title
   label: Title
-  preset: title
   display_property: dc.title
-  form_placeholder: eg. A descriptive title for the digitization resource
+  form_placeholder: e.g., a descriptive title
+  validators: unicode_safe digitizationknowledge_required
   required: True
 
 - field_name: url
   label: Source
-  form_placeholder: https://example.com/
+  form_placeholder: e.g., https://digitizationknowledge.org
   display_property: schema:url
   display_snippet: link.html
   required: True
 
 - field_name: doi
   label: DOI
-  form_placeholder: https://doi.org/10.3897/zookeys.209.3135
+  form_placeholder: e.g., https://doi.org/10.3897/zookeys.209.3135
   display_property: dc:identifier:doi
   display_snippet: link.html
 
@@ -42,12 +42,12 @@ dataset_fields:
 - field_name: author
   label: First Author
   required: True
-  form_placeholder: Joe Bloggs
+  form_placeholder: e.g., Sam Doe
   display_property: dc:creator
   
 - field_name: author_email
   label: First Author's Email
-  form_placeholder: joe@example.com
+  form_placeholder: e.g., sam.doe@digitizationknowledge.org
   display_property: dc:creator:email
   display_snippet: email.html
   display_email_name_field: author
@@ -66,7 +66,6 @@ dataset_fields:
 - field_name: publisher
   label: Publisher
   required: True
-  form_placeholder: Philosophical Transactions of the Royal Society B Biological Sciences
   display_property: schema:publisher
 
 - field_name: location_created
@@ -88,9 +87,10 @@ dataset_fields:
   display_property: schema:bookEdition
 
 - field_name: is_part_of
-  label: Part Of
+  label: Part Of (URL)
   display_property: schema:isPartOf
   display_snippet: link.html
+  form_placeholder: https://digitizationknowledge.org
   help_text: Internal link to the resource this is part of
 
 - field_name: is_part_of_title
@@ -137,7 +137,7 @@ dataset_fields:
 - field_name: tag_string
   label: Tags
   preset: tag_string_autocomplete
-  form_placeholder: eg. economy, mental health, government
+  form_placeholder: e.g., digitization workflow
   display_property: dc:subject
 
 - field_name: task_clusters
