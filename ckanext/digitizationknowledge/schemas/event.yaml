@@ -17,12 +17,11 @@ dataset_fields:
 - field_name: title
   label: Title
   display_property: dc.title
-  form_placeholder: e.g., a descriptive title
   validators: unicode_safe digitizationknowledge_required
   required: True
 
 - field_name: url
-  label: Source
+  label: URL
   form_placeholder: e.g., https://digitizationknowledge.org
   display_property: schema:url
   display_snippet: link.html
@@ -46,7 +45,6 @@ dataset_fields:
 - field_name: notes
   label: Description
   form_snippet: markdown.html
-  form_placeholder: eg. Some useful notes about the data
   display_property: schema:abstract
 
 - field_name: category
@@ -62,7 +60,7 @@ dataset_fields:
 - field_name: tag_string
   label: Tags
   preset: tag_string_autocomplete
-  form_placeholder: eg. economy, mental health, government
+  form_placeholder: e.g., digitization workflow
   display_property: dc:subject
 
 - field_name: task_clusters
@@ -132,8 +130,9 @@ resource_fields:
 
 - field_name: name
   label: Name
-  form_placeholder: eg. BioDigiCon
+  form_placeholder: Title
   display_property: dc:title
+  required: True
 
 - field_name: location
   label: Location
@@ -144,12 +143,14 @@ resource_fields:
   label: Start Date
   preset: date
   display_property: schema:start_date
+  required: True
 
 - field_name: end_date
   label: End Date
   preset: date
   display_property: schema:end_date
-
+  required: True
+  
 - field_name: in_language
   label: Language
   preset: multiple_select
@@ -175,7 +176,6 @@ resource_fields:
 - field_name: description
   label: Description
   form_snippet: markdown.html
-  form_placeholder: Some useful notes about the data
   display_property: schema:abstract
 
 - field_name: format

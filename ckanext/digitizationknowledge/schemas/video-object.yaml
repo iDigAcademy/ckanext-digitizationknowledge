@@ -22,7 +22,7 @@ dataset_fields:
   required: True
 
 - field_name: url
-  label: Source
+  label: URL
   form_placeholder: e.g., https://digitizationknowledge.org
   display_property: schema:url
   display_snippet: link.html
@@ -30,12 +30,13 @@ dataset_fields:
 
 - field_name: author
   label: First Author
-  form_placeholder: Joe Bloggs
+  form_placeholder: e.g., Sam Doe
+  help_text: Author's name as written in the resource
   display_property: dc:creator
 
 - field_name: author_email
   label: First Author's Email
-  form_placeholder: joe@example.com
+  form_placeholder: e.g., sam.doe@digitizationknowledge.org
   display_property: dc:creator:email
   display_snippet: email.html
   display_email_name_field: author
@@ -43,7 +44,8 @@ dataset_fields:
 - field_name: other_authors
   label: Other Authors
   preset: multiple_text
-  form_placeholder: Joe Bloggs
+  form_placeholder: e.g., Sam Doe
+  help_text: Author's name as written in the resource
   display_property: dc:creator
 
 - field_name: date_published
@@ -53,21 +55,21 @@ dataset_fields:
 
 - field_name: start_time
   label: Start Time
-  form_placeholder: 00:12:00
+  form_placeholder: e.g., 00:12:00
   display_property: schema:startTime
 
 - field_name: end_time
   label: End Time
-  form_placeholder: 00:30:00
+  form_placeholder: e.g., 00:30:00
   display_property: schema:endTime
 
 - field_name: duration
   label: Duration
-  form_placeholder: 00:12:00
+  form_placeholder: e.g., 00:12:00
   display_property: schema:duration
 
 - field_name: is_part_of
-  label: Part Of
+  label: Part Of (URL)
   display_property: schema:isPartOf
   display_snippet: link.html
   help_text: Internal link to the resource this is part of
@@ -80,7 +82,7 @@ dataset_fields:
 - field_name: version
   label: Version
   validators: ignore_missing unicode_safe package_version_validator
-  form_placeholder: '1.0'
+  form_placeholder: 'e.g., 1.0'
   display_property: schema:version
 
 - field_name: in_language
@@ -108,12 +110,13 @@ dataset_fields:
 
 - field_name: maintainer
   label: Maintainer
-  form_placeholder: Joe Bloggs
+  form_placeholder: e.g., Sam Doe
+  help_text: Maintainer's name written as appears in the resource
   display_property: dc:contributor
 
 - field_name: maintainer_email
   label: Maintainer's Email
-  form_placeholder: joe@example.com
+  form_placeholder: e.g., sam.doe@digitizationknowledge.org
   display_property: dc:contributor:email
   display_snippet: email.html
   display_email_name_field: maintainer
@@ -121,7 +124,6 @@ dataset_fields:
 - field_name: notes
   label: Description
   form_snippet: markdown.html
-  form_placeholder: eg. Some useful notes about the data
   display_property: schema:abstract
 
 - field_name: category
@@ -137,7 +139,7 @@ dataset_fields:
 - field_name: tag_string
   label: Tags
   preset: tag_string_autocomplete
-  form_placeholder: eg. economy, mental health, government
+  form_placeholder: e.g., digitization workflow
   display_property: dc:subject
 
 - field_name: task_clusters
@@ -207,19 +209,18 @@ resource_fields:
 
 - field_name: name
   label: Name
-  form_placeholder: A descriptive title of the resource
+  form_placeholder: Title
   display_property: dc:title
 
 - field_name: version
   label: Version
   validators: ignore_missing unicode_safe package_version_validator
-  form_placeholder: '1.0'
+  form_placeholder: 'e.g., 1.0'
   display_property: schema:version
 
 - field_name: description
   label: Description
   form_snippet: markdown.html
-  form_placeholder: Some useful notes about the data
   display_property: schema:abstract
 
 - field_name: format
