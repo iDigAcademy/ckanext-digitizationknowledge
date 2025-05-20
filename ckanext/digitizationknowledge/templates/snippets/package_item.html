@@ -1,0 +1,33 @@
+{% ckan_extends %}
+
+{% block resources %}
+  {% if package.in_digitization_academy_course or package.resources and not hide_resources %}
+    <div class="dataset-resources-wrapper mt-2">
+      {% if package.in_digitization_academy_course %}
+        <a href="https://digitizationacademy.org/" 
+           target="_blank" 
+           rel="noopener"
+           class="btn btn-light btn-sm border me-2 mb-1 shadow-sm"
+           title="{{ _('Digitization Academy Course Material') }}">
+          <img src="http://dev.digiknow.xyz/logos/digitization_academy.svg"
+               alt="{{ _('Digitization Academy Logo') }}"
+               width="80" height="28" />
+        </a>
+      {% endif %}
+
+      {% if package.resources and not hide_resources %}
+        {% block resources_outer %}
+          <ul class="dataset-resources list-unstyled d-inline-flex flex-wrap">
+            {% block resources_inner %}
+              {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+              <li class="me-2 mb-1">
+                <a href="{{ h.url_for(package.type ~ '.read', id=package.name) }}" class="badge badge-default" data-format="{{ resource.lower() }}">{{ resource }}</a>
+              </li>
+              {% endfor %}
+            {% endblock %}
+          </ul>
+        {% endblock %}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endblock %}

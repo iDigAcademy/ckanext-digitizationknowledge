@@ -63,6 +63,18 @@ dataset_fields:
   form_placeholder: e.g., digitization workflow
   display_property: dc:subject
 
+- field_name: in_digitization_academy_course
+  label: In Digitization Academy Course
+  help_text: Is this resource part of a course in the Digitization Academy?
+  preset: radio
+  choices:
+  - value: true
+    label: "Yes"
+  - value: false
+    label: "No"
+  validators: boolean_validator
+  output_validators: boolean_validator
+
 - field_name: task_clusters
   label: Task Clusters
   help_text:
