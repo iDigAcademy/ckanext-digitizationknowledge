@@ -149,6 +149,16 @@ dataset_fields:
   validators: boolean_validator
   output_validators: boolean_validator
 
+- field_name: digitization_academy_course
+  label: Digitization Academy Courses
+  preset: multiple_select
+  display_property: dk:digitization_academy_course
+  choices_helper: scheming_datastore_choices
+  datastore_choices_resource: digitization_academy_course
+  datastore_choices_columns:
+    value: value
+    label: label
+
 - field_name: task_clusters
   label: Task Clusters
   help_text:
