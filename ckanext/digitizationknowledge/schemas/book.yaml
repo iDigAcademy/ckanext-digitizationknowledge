@@ -76,11 +76,20 @@ dataset_fields:
   label: Location Created
   display_property: schema:locationCreated
 
+- field_name: date_created
+  label: Date Created
+  preset: date
+  display_property: schema:dateCreated
+
+- field_name: date_modified
+  label: Date Modified
+  preset: date
+  display_property: schema:dateModified
+
 - field_name: date_published
   label: Date Published
   preset: date
   display_property: schema:datePublished
-  help_text: If the publication has only year then use the first of January as filler (eg., 01-01-2025)
 
 - field_name: number_of_pages
   label: Number of Pages
@@ -237,6 +246,21 @@ resource_fields:
 - field_name: isbn
   label: ISBN
   display_property: schema:isbn
+
+- field_name: date_created
+  label: Date Created
+  preset: date
+  display_property: schema:dateCreated
+
+- field_name: date_modified
+  label: Date Modified
+  preset: date
+  display_property: schema:dateModified
+
+- field_name: date_published
+  label: Date Published
+  preset: date
+  display_property: schema:datePublished
 
 - field_name: version
   label: Version

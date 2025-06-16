@@ -74,11 +74,20 @@ dataset_fields:
   label: Issue Number
   display_property: schema:issueNumber
 
+- field_name: date_created
+  label: Date Created
+  preset: date
+  display_property: schema:dateCreated
+
+- field_name: date_modified
+  label: Date Modified
+  preset: date
+  display_property: schema:dateModified
+
 - field_name: date_published
   label: Date Published
   preset: date
   display_property: schema:datePublished
-  help_text: If the publication has only year then use the first of January as filler (eg., 01-01-2025)
 
 - field_name: pagination
   label: Pagination
@@ -218,6 +227,21 @@ resource_fields:
   form_placeholder: https://doi.org/10.3897/zookeys.209.3135
   display_property: dc:identifier:doi
   display_snippet: link.html
+
+- field_name: date_created
+  label: Date Created
+  preset: date
+  display_property: schema:dateCreated
+
+- field_name: date_modified
+  label: Date Modified
+  preset: date
+  display_property: schema:dateModified
+
+- field_name: date_published
+  label: Date Published
+  preset: date
+  display_property: schema:datePublished
 
 - field_name: version
   label: Version

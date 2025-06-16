@@ -47,6 +47,16 @@ dataset_fields:
   help_text: Author's name as written in the resource
   display_property: dc:creator
 
+- field_name: date_created
+  label: Date Created
+  preset: date
+  display_property: schema:dateCreated
+
+- field_name: date_modified
+  label: Date Modified
+  preset: date
+  display_property: schema:dateModified
+
 - field_name: date_published
   label: Date Published
   preset: date
@@ -229,6 +239,21 @@ resource_fields:
   label: Name
   form_placeholder: Title
   display_property: dc:title
+
+- field_name: date_created
+  label: Date Created
+  preset: date
+  display_property: schema:dateCreated
+
+- field_name: date_modified
+  label: Date Modified
+  preset: date
+  display_property: schema:dateModified
+
+- field_name: date_published
+  label: Date Published
+  preset: date
+  display_property: schema:datePublished
 
 - field_name: version
   label: Version
