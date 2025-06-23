@@ -75,7 +75,7 @@
 {% block secondary_content %}
 
 
-{% set basic_facets = ['type', 'category', 'tags'] %}
+{% set basic_facets = ['task_clusters', 'task', 'preparations', 'tags', 'digitization_academy_course', 'discipline', 'audience', 'in_language', ] %}
 {% set all_facet_keys = facet_titles.keys() | list %}
 {% set advanced_facets = all_facet_keys | reject('in', basic_facets) | list %}
 
