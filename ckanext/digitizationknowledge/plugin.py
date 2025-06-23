@@ -122,7 +122,7 @@ class DigitizationknowledgePlugin(plugins.SingletonPlugin):
         return validators.get_validators()
     
     # IFacets
-
+    # TODO make the facets dynamic thatcan be loaded from the ckan.ini config file without needing to change source code for the plugin.
     def dataset_facets(self, facets_dict, package_type):
         """Modify the facets_dict and return it
         """
@@ -132,18 +132,18 @@ class DigitizationknowledgePlugin(plugins.SingletonPlugin):
         new_facets['task'] = toolkit._('Tasks')
         new_facets['preparations'] = toolkit._('Preparations')
         new_facets['tags'] = toolkit._('Tags')
-        new_facets['digitization_academy_course'] = toolkit._('Digitization Academy Course')
+        new_facets['digitization_academy_course'] = toolkit._('Digitization Academy Courses')
         new_facets['discipline'] = toolkit._('Discipline')
         new_facets['audience'] = toolkit._('Audience')
-        new_facets['in_language']= toolkit._('Language')
+        new_facets['in_language']= toolkit._('Languages')
         
         # Advanced facets
         new_facets['category'] = toolkit._('Categories')
         new_facets['organization'] = toolkit._('Organizations')
  
         new_facets['groups'] = toolkit._('Groups')
-        new_facets['in_digitization_academy_course'] = toolkit._('In Digitization Academy Course')
-        new_facets['type'] = toolkit._('Resource Type')
+        new_facets['in_digitization_academy_course'] = toolkit._('In Digitization Academy Courses')
+        new_facets['type'] = toolkit._('Resource Types')
                 
 
         # Return only the facets defined above, ignoring CKAN's default
