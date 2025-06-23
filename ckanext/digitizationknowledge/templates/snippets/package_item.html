@@ -1,5 +1,11 @@
 {% ckan_extends %}
 
+  {% block heading_title %}
+    <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" title="{{ title }}" target="_blank" rel="noopener noreferrer">
+      {{title|truncate(80)}}
+    </a>
+  {% endblock %}
+
 {% block resources %}
   {% if package.in_digitization_academy_course or package.resources and not hide_resources %}
     <div class="dataset-resources-wrapper mt-2">
@@ -8,7 +14,7 @@
            target="_blank" 
            rel="noopener"
            class="btn btn-light btn-sm border me-2 mb-1 shadow-sm"
-           title="{{ _('Digitization Academy Course Material') }}">
+           title="{{ _('Appears in a Digitization Academy course') }}">
           <img src="/logos/digitization_academy.svg"
                alt="{{ _('Digitization Academy Logo') }}"
                width="80" height="28" />
