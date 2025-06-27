@@ -73,18 +73,20 @@
     {%- endif -%}
   {%- endfor -%}
 
-  {#- 3. Render the fields from custom_order_end -#}
-  {%- for field_name in custom_order_end -%}
-    {%- set field = fields_by_name.get(field_name) -%}
-    {%- if field -%}
-      {{ render_field(field, pkg_dict, schema) }}
-    {%- endif -%}
-  {%- endfor -%}
+  {#- 3. Render the fields from custom_order_end (advanced fields) -#}
+  <template x-if="showMore">
+    {%- for field_name in custom_order_end -%}
+      {%- set field = fields_by_name.get(field_name) -%}
+      {%- if field -%}
+        {{ render_field(field, pkg_dict, schema) }}
+      {%- endif -%}
+    {%- endfor -%}
 
-  {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
-    <tr>
-      <th scope="row" class="dataset-label">{{ _("State") }}</th>
-      <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
-    </tr>
-  {% endif %}
+    {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
+      <tr>
+        <th scope="row" class="dataset-label">{{ _("State") }}</th>
+        <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
+      </tr>
+    {% endif %}
+  </template>
 {% endblock %}
