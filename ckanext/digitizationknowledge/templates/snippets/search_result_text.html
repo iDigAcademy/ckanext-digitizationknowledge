@@ -12,10 +12,10 @@
     
     #}
     {% if type == 'dataset' %}
-      {% set text_query = ungettext('{number} digitization resource found for "{query}"', '{number} digitization resources found for "{query}"', count) %}
-      {% set text_query_none = _('No digitization resources found for "{query}"') %}
-      {% set text_no_query = ungettext('{number} digitization resource found', '{number} digitization resources found', count) %}
-      {% set text_no_query_none = _('No datasets found') %}
+      {% set text_query = ungettext('{number} resource found for "{query}"', '{number} resources found for "{query}"', count) %}
+      {% set text_query_none = _('No resources found for "{query}"') %}
+      {% set text_no_query = ungettext('{number} resource found', '{number} resources found', count) %}
+      {% set text_no_query_none = _('No resources found') %}
     
     {% elif type == 'group' %}
       {% set text_query = ungettext('{number} group found for "{query}"', '{number} groups found for "{query}"', count) %}
