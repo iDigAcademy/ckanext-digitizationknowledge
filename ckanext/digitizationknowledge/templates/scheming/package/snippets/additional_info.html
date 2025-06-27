@@ -8,20 +8,79 @@
     'owner_org',
     ] -%}
 
+{#-
+  Define custom field orders. You can specify a default order and then
+  override it for specific dataset types.
+
+  - `custom_order`: Fields to display at the beginning.
+  - `custom_order_end`: Fields to display at the end.
+
+  Example for a dataset type 'my_dataset_type':
+  {% if pkg_dict.type == 'my_dataset_type' %}
+    {% set custom_order = ['important_field', 'another_field'] %}
+    {% set custom_order_end = ['less_important_field'] %}
+  {% endif %}
+-#}
+
+{#- Default order (if no type-specific order is set) -#}
+{%- set custom_order = ['url', 'task_clusters', 'task', 'preparations', 'tags', 'digitization_academy_course', 'discipline', 'audience', 'in_language', 'category', 'organization', 'groups', 'in_digitization_academy_course', 'type'] -%}
+{%- set custom_order_end = ['id', 'state'] -%}
+
+{#- Example of type-specific ordering -#}
+{#- Uncomment and adapt this block for your dataset types
+{% if pkg_dict.type == 'your_dataset_type_name_1' %}
+    {% set custom_order = ['field_a', 'field_b'] %}
+    {% set custom_order_end = ['field_z'] %}
+{% elif pkg_dict.type == 'your_dataset_type_name_2' %}
+    {% set custom_order = ['field_x', 'field_y'] %}
+{% endif %}
+-#}
+
+{#- A helper macro to render a field's table row -#}
+{%- macro render_field(field, pkg_dict, schema) -%}
+  {#- This macro checks against `exclude_fields` before rendering -#}
+  {%- if field.field_name not in exclude_fields
+      and field.display_snippet is not none and pkg_dict.get(field.field_name,"") -%}
+    <tr>
+      <th scope="row" class="dataset-label">{{
+        h.scheming_language_text(field.label) }}</th>
+      <td class="dataset-details"{%- if field.display_property %} property="{{ field.display_property
+        }}"{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
+        field=field, data=pkg_dict, schema=schema -%}</td>
+    </tr>
+  {%- endif -%}
+{%- endmacro -%}
+
 {% block package_additional_info %}
+  {#- Create a dictionary of fields for efficient lookups -#}
+  {%- set fields_by_name = {} -%}
   {%- for field in schema.dataset_fields -%}
-    {%- if field.field_name not in exclude_fields
-        and field.display_snippet is not none and pkg_dict.get(field.field_name,"") -%}
-      <tr>
-        <th scope="row" class="dataset-label">{{
-          h.scheming_language_text(field.label) }}</th>
-        <td class="dataset-details"{%
-          if field.display_property %} property="{{ field.display_property
-          }}"{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
-          field=field, data=pkg_dict, schema=schema -%}</td>
-      </tr>
+    {%- do fields_by_name.update({field.field_name: field}) -%}
+  {%- endfor -%}
+
+  {#- 1. Render the fields from custom_order -#}
+  {%- for field_name in custom_order -%}
+    {%- set field = fields_by_name.get(field_name) -%}
+    {%- if field -%}
+      {{ render_field(field, pkg_dict, schema) }}
     {%- endif -%}
   {%- endfor -%}
+
+  {#- 2. Render the 'middle' fields -#}
+  {%- for field in schema.dataset_fields -%}
+    {%- if field.field_name not in custom_order and field.field_name not in custom_order_end -%}
+      {{ render_field(field, pkg_dict, schema) }}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {#- 3. Render the fields from custom_order_end -#}
+  {%- for field_name in custom_order_end -%}
+    {%- set field = fields_by_name.get(field_name) -%}
+    {%- if field -%}
+      {{ render_field(field, pkg_dict, schema) }}
+    {%- endif -%}
+  {%- endfor -%}
+
   {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
     <tr>
       <th scope="row" class="dataset-label">{{ _("State") }}</th>
