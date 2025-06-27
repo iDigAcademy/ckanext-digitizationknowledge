@@ -1,6 +1,7 @@
-<section class="additional-info">
-  <h3>{{ _('Additional Info') }}</h3>
-  <table class="table table-bordered table-condensed">
+<div x-data="{ showMore: false }" x-cloak>
+  <section class="additional-info">
+    <h3>{{ _('Additional Info') }}</h3>
+    <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th scope="col">{{ _('Field') }}</th>
@@ -92,4 +93,20 @@
       {% endblock %}
     </tbody>
   </table>
-</section>
+  </section>
+
+  {#- Toggle buttons are placed below the table -#}
+  <div class="text-center" style="padding-top: 10px;">
+    <button x-show="!showMore" @click="showMore = true" class="btn btn-default btn-sm">
+      <i class="fa fa-chevron-down"></i> {{ _('Show more') }}
+    </button>
+    <button x-show="showMore" @click="showMore = false" class="btn btn-default btn-sm" x-cloak>
+      <i class="fa fa-chevron-up"></i> {{ _('Show less') }}
+    </button>
+  </div>
+</div>
+
+{#- Add styles for Alpine's x-cloak to prevent flash of unstyled content -#}
+<style>
+  [x-cloak] { display: none !important; }
+</style>
