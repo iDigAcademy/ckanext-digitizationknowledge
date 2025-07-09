@@ -73,6 +73,7 @@ dataset_fields:
   preset: multiple_select
   display_property: schema:operatingSystem
   choices_helper: scheming_datastore_choices
+  sorted_choices: true
   datastore_choices_resource: operating_system
   datastore_choices_columns:
     value: value
@@ -95,6 +96,7 @@ dataset_fields:
   preset: multiple_select
   display_property: schema:inLanguage
   choices_helper: scheming_datastore_choices
+  sorted_choices: true
   datastore_choices_resource: in_language
   datastore_choices_columns:
     value: value
@@ -136,6 +138,7 @@ dataset_fields:
   preset: select
   display_property: schema:category
   choices_helper: scheming_datastore_choices
+  sorted_choices: true
   datastore_choices_resource: software_application_category
   datastore_choices_columns:
     value: value
@@ -164,6 +167,7 @@ dataset_fields:
   preset: multiple_select
   display_property: dk:digitization_academy_course
   choices_helper: scheming_datastore_choices
+  sorted_choices: true
   datastore_choices_resource: digitization_academy_course
   datastore_choices_columns:
     value: value
@@ -174,6 +178,7 @@ dataset_fields:
   help_text:
   preset: multiple_select
   choices_helper: scheming_datastore_choices
+  sorted_choices: true
   datastore_choices_resource: task_clusters
   datastore_choices_columns:
     value: value
@@ -183,6 +188,7 @@ dataset_fields:
   label: Task
   preset: multiple_select
   choices_helper: scheming_datastore_choices
+  sorted_choices: true
   datastore_choices_resource: task
   datastore_choices_columns:
     value: value
@@ -193,6 +199,7 @@ dataset_fields:
   preset: multiple_select
   display_property: dwc:preparations
   choices_helper: scheming_datastore_choices
+  sorted_choices: true
   datastore_choices_resource: preparations
   datastore_choices_columns:
     value: value
@@ -203,6 +210,7 @@ dataset_fields:
   preset: multiple_select
   display_property: schema:audience
   choices_helper: scheming_datastore_choices
+  sorted_choices: true
   datastore_choices_resource: audience
   datastore_choices_columns:
     value: value
@@ -213,6 +221,7 @@ dataset_fields:
   preset: multiple_select
   display_property: ltc:discipline
   choices_helper: scheming_datastore_choices
+  sorted_choices: true
   datastore_choices_resource: discipline
   datastore_choices_columns:
     value: value
@@ -222,6 +231,7 @@ dataset_fields:
   label: Equipment
   preset: multiple_select
   choices_helper: scheming_datastore_choices
+  sorted_choices: true
   datastore_choices_resource: equipment
   datastore_choices_columns:
     value: value
