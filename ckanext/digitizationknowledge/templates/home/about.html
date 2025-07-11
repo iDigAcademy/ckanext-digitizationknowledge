@@ -1,1 +1,195 @@
 {% ckan_extends %}
+
+{% block about %}
+
+<!-- Main Content -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8">
+      <!-- About Intro -->
+      <section class="mb-5">
+        <h2 class="mb-4 pb-2 border-bottom border-3 border-primary d-inline-block">About the Digitization Knowledge Base</h2>
+        <p class="fs-5">The Digitization Knowledge Base, a project of Integrated Digitized Biocollections (iDigBio), is a central hub for discovering resources related to the digitization of biodiversity collections. We serve a wide spectrum of users, from museum professionals and researchers to those engaged in participatory science. Our mission is to enhance the visibility of these valuable resources and make it easier to identify and fill gaps in community documentation.</p>
+      </section>
+
+      <!-- Justification - Our Story Section -->
+      <section class="mb-5">
+        <h2 class="mb-4 pb-2 border-bottom border-3 border-primary d-inline-block">Our Story</h2>
+        <p>For years, iDigBio has supported the biodiversity digitization community by curating resources on the iDigBio Wiki. While these pages have been an important reference for collection professionals, the community found that searching for and discovering new materials on the wiki could be cumbersome.</p>
+        <p>The Digitization Knowledge Base was born from this feedback. It represents the next evolution in iDigBio's commitment to compiling and sharing community knowledge, offering a powerful and intuitive experience for all users.</p>
+      </section>
+
+      <!-- Our Approach Section -->
+      <section class="mb-5">
+        <h2 class="mb-4 pb-2 border-bottom border-3 border-primary d-inline-block">Our Approach</h2>
+        <p>Our approach is to serve as a central hub that points to the wealth of resources already created by the digitization community, rather than hosting original content directly. We enrich these resources with detailed descriptions and structured metadata to power a robust search experience, allowing users to find materials through both faceted and full-text searches. This focus on metadata enhancement makes discovery faster and more intuitive. Furthermore, we foster a collaborative environment by enabling community discussion around each resource through a commenting system, helping to collectively advance our shared expertise.</p>
+      </section>
+
+      <!-- Knowledge Base Scale Section -->
+      <section class="mb-5">
+        <h2 class="mb-4 pb-2 border-bottom border-3 border-primary d-inline-block">Roadmap</h2>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="border-start border-5 border-primary ps-3">
+              <h5 class="text-primary">Phase 1 - Current</h5>
+              <p>Our initial focus is on integrating resources shared in the Digitization Academy courses, the iDigBio Wiki, and materials created by the various iDigBio project teams.</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="border-start border-5 border-info ps-3">
+              <h5 class="text-info">Phase 2 - Upcoming</h5>
+              <p>We will expand our scope to include all relevant online resources related to biodiversity specimen digitization and will begin accepting community contributions through our GitHub repository</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="mb-5">
+        <h2 class="mb-4 pb-2 border-bottom border-3 border-primary d-inline-block">Frequently Asked Questions (FAQ)</h2>
+        <div class="accordion accordion-flush" id="faqAccordion">
+          <div class="accordion-item border rounded mb-2">
+            <h3 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                Are resources stored directly on this platform?
+              </button>
+            </h3>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                No, we provide detailed metadata and links to the original resources, along with the tools to help you find them, but we do not host the resources themselves.
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item border rounded mb-2">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                Does this project replace the iDigBio Wiki?
+              </button>
+            </h3>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Not entirely. This platform is complementary to the iDigBio Wiki. It is designed to replace the wiki's function as a list of resources by offering a much more powerful search experience. The wiki will remain a valuable source for original, long-form content and articles created by the community.
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item border rounded mb-2">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                Will this platform give me free access to all resources shown here?
+              </button>
+            </h3>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                We provide the link to the original host of each resource. However, access is determined by the provider. Some resources may require a subscription or payment, which this platform cannot bypass.
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item border rounded mb-2">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                Can I use this platform without signing up?
+              </button>
+            </h3>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes. Anyone can search for resources, view their metadata, and follow links to the original content without an account. You can also view comments left by other users.
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item border rounded mb-2">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                What benefits do I get if I sign up?
+              </button>
+            </h3>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Signing up for a free account unlocks additional features. You can comment on resources to share your insights and create custom collections of resources for your own projects or to share with the community.
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item border rounded mb-2">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                Can I suggest a resource that is missing?
+              </button>
+            </h3>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Definetively! While our team currently curates the resources, we welcome suggestions. The best way to propose a new resource is by creating an issue in our DigitizationKnowledge GitHub repository. If you don't have a GitHub account, please send us an email at <a href="mailto:fpichardomarcano@fsu.edu">fpichardomarcano@fsu.edu</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item border rounded mb-2">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                Can I create an user account for free?
+              </button>
+            </h3>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes creating a user account is free and will give you access to searching the resources, creating groups of resources and commenting on resources.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Maintainers Section -->
+      <section class="mb-5">
+        <h2 class="mb-4 pb-2 border-bottom border-3 border-primary d-inline-block">Maintainers</h2>
+        <div class="card mb-4 border-0 shadow-sm">
+          <div class="row g-4 align-items-center">
+            <div class="col-12 col-md-4 col-lg-3 d-flex justify-content-center">
+              <img src="/fritz-pichardo_idigbio-portrait.jpg" class="img-fluid rounded-circle" alt="Fritz Pichardo Marcano" style="max-width: 180px;">
+            </div>
+            <div class="col-12 col-md-8 col-lg-9">
+              <div class="card-body p-3 p-md-4">
+                <h4 class="card-title d-flex align-items-center">Fritz Pichardo Marcano
+                  <a href="mailto:fpichardomarcano@fsu.edu" class="ms-2 text-decoration-none" aria-label="Email Fritz">
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                </h4>
+                <h6 class="card-subtitle mb-3 text-muted">iDigBio's Digitization Resources Manager</h6>
+                <p class="card-text">Fritz leads the development and management of iDigBio's Knowledge Base. He tracks emerging methods and technologies in the field, identifies gaps in existing resources, and works on addressing these gaps by developing new protocols and guides. He also instructs digitization courses in Spanish for the Digitization Academy.</p>
+                <p class="card-text">He has worked with natural history collections since his undergraduate studies at Universidad Autónoma de Santo Domingo. During his graduate work at Florida State University, he managed the herbarium collection and focused on geospatial methods for biodiversity data. His research background includes work on tropical plant phylogenetics at Memorial University of Newfoundland. Fritz is particularly interested in data management standards and how geospatial analysis can improve our understanding of biodiversity patterns.</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <section class="mb-5">
+  <h2 class="mb-4 pb-2 border-bottom border-3 border-primary d-inline-block">Get Involved &amp; Find Support</h2>
+  <p><strong>Report an Issue:</strong> If you encounter a bug or have a problem with the platform's functionality, please report it on our <a href="https://github.com/iDigAcademy/DigitizationAcademy/issues">GitHub Issues page</a>.</p>
+  <p><strong>Contact Us:</strong> For other inquiries, you can reach us at <a href="mailto:fpichardomarcano@fsu.edu">fpichardomarcano@fsu.edu</a>.</p>
+</section>
+      </section>
+
+      <!-- More Section -->
+      <section class="mb-5">
+        <div class="card bg-primary bg-opacity-10 border-0">
+          <div class="card-body text-center py-5">
+            <i class="bi bi-book display-4 text-primary mb-3"></i>
+            <h3 class="mb-3">Learn More</h3>
+            <p class="mb-4">To learn more about the Digitization Knowledge Base, check out our extended documentation. Here you will find a detailed user guide and more information about the structure and organization of the knowledge base.</p>
+            <a href="https://fpichardom.github.io/dk-docs/" class="btn btn-primary">View Extended Documentation</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div class="mt-5 pt-4 border-top text-muted">
+        <p>iDigBio is funded by grants from the National Science Foundation [DBI-1115210 (2011-2018), DBI-1547229 (2016-2022), & DBI-2027654 (2021-2026)]. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
