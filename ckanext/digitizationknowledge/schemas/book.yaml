@@ -143,7 +143,7 @@ dataset_fields:
   display_property: schema:category
   choices_helper: scheming_datastore_choices
   sorted_choices: true
-  datastore_choices_resource: scholarly_article_category
+  datastore_choices_resource: book_category
   datastore_choices_columns:
     value: value
     label: label
