@@ -91,6 +91,18 @@ dataset_fields:
   validators: boolean_validator
   output_validators: boolean_validator
 
+- field_name: has_paid_option
+  label: Has Paid Option
+  display_property: schema:hasPaidOption
+  preset: radio
+  choices:
+  - value: true
+    label: "Yes"
+  - value: false
+    label: "No"
+  validators: boolean_validator
+  output_validators: boolean_validator
+
 - field_name: in_language
   label: Language
   preset: multiple_select

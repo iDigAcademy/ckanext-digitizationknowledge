@@ -97,8 +97,20 @@ dataset_fields:
     label: label
 
 - field_name: is_accessible_for_free
-  label: Is Accessible for Free
+  label: Accessible for Free
   display_property: schema:isAccessibleForFree
+  preset: radio
+  choices:
+  - value: true
+    label: "Yes"
+  - value: false
+    label: "No"
+  validators: boolean_validator
+  output_validators: boolean_validator
+
+- field_name: has_paid_option
+  label: Has Paid Option
+  display_property: schema:hasPaidOption
   preset: radio
   choices:
   - value: true
