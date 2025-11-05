@@ -1,0 +1,94 @@
+{% ckan_extends %}
+
+{% block content %}
+  <div class="dataset-content">
+	{# Row 1 - Title #}
+	{% block heading %}
+	  <h2 class="dataset-heading">
+		{% block heading_private %}
+		  {% if package.private %}
+			<span class="dataset-private badge bg-secondary">
+				<i class="fa fa-lock"></i>
+				{{ _('Private') }}
+			</span>
+		  {% endif %}
+		{% endblock %}
+		{% block heading_title %}
+		  <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" title="{{ title }}" target="_blank" rel="noopener noreferrer">
+			{{title|truncate(80)}}
+		  </a>
+		{% endblock %}
+		{% block heading_meta %}
+		  {% if package.get('state', '').startswith('draft') %}
+			<span class="badge bg-info">{{ _('Draft') }}</span>
+		  {% elif package.get('state', '').startswith('deleted') %}
+			<span class="badge bg-danger">{{ _('Deleted') }}</span>
+		  {% endif %}
+		{% endblock %}
+	  </h2>
+	{% endblock %}
+	
+	{# Row 2 - Description #}
+	{% block notes %}
+	  {% if notes %}
+		<div class="mb-2">{{ notes|urlize }}</div>
+	  {% else %}
+		<p class="empty mb-2">{{ h.humanize_entity_type('package', package.type, 'no description') or _("There is no description for this resource") }}</p>
+	  {% endif %}
+	{% endblock %}
+	
+	{# Row 3-4 - Logo, language, published date, and resources #}
+	{% block resources %}
+	  <div class="dataset-resources-wrapper">
+		<div class="dataset-resources__top">
+		  {# Logo if condition met #}
+		  {% if package.in_digitization_academy_course %}
+			<a href="https://digitizationacademy.org/" 
+			  target="_blank" 
+			  rel="noopener"
+			  class="btn btn-light btn-sm border me-2 mb-1 shadow-sm"
+			  title="{{ _('Appears in a Digitization Academy course') }}">
+			  <img src="/logos/digitization_academy.svg"
+				alt="{{ _('Digitization Academy Logo') }}"
+				width="80" height="28" />
+			</a>
+		  {% endif %}
+		  {# Tags similar to homepage search #}
+		  {% if package.tags %}
+			<div class="tags">
+			  {% set search_dataset_type = h.default_package_type() %}
+			  {% for tag in package.tags %}
+			  <a class="tag" href="{{ h.url_for(search_dataset_type ~ '.search', tags=tag.name) }}" title="{{ tag.display_name }}">{{ tag.display_name|truncate(22) }}</a>
+			  {% endfor %}
+			</div>
+		  {% endif %}
+		</div>
+		<ul class="dataset-resources__bottom">
+		  {# Language field #}
+		  {% if package.in_language %}
+			<li><strong>{{ _('Language') }}:</strong> {% for language in package.in_language %}{{ language }}{% endfor %}</li>
+		  {% endif %}
+		  {# Published date - assuming field name, adjust as needed #}
+		  {% if package.metadata_created %}
+			<li><strong>{{ _('Created') }}:</strong> {{ h.render_datetime(package.metadata_created, date_format='%Y-%m-%d') }}</li>
+		  {% endif %}
+		</ul>
+		  {# This are the badges for the individual files that will no longer be shown #}
+		  {# Resources #}
+		  {% if package.resources and not hide_resources %}
+		  {% block resources_outer %}
+			<ul class="dataset-resources list-unstyled d-inline-flex flex-wrap mb-0">
+			  {% block resources_inner %}
+				{% for resource in h.dict_list_reduce(package.resources, 'format') %}
+				<li class="me-2 mb-1">
+				  <a href="{{ h.url_for(package.type ~ '.read', id=package.name) }}" class="badge" data-format="{{ resource.lower() }}">{{ resource }}</a>
+				</li>
+				{% endfor %}
+			  {% endblock %}
+			</ul>
+		  {% endblock %}
+		{% endif %}
+	  </div>
+	{% endblock %}
+  </div>
+{% endblock %}
