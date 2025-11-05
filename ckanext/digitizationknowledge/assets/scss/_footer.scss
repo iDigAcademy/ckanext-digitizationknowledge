@@ -1,0 +1,57 @@
+.site-footer {
+    background: linear-gradient(0deg, rgba(32, 57, 152, 0.9), rgba(32, 57, 152, 0.9)), url("#{$imagePath}/feather.jpg");
+    background-size:cover;
+    padding: 20px 0;
+    position:relative;
+    &:before {
+        height:7px;
+        width:100%;
+        background:$brand-gradient;
+        display:block;
+        content:"";
+        position:absolute;
+        top:0;
+        
+    }
+    & label,
+    small {
+        color: $footerTextColor;
+    }
+    a {
+        color: $footerLinkColor;
+    }
+    .footer-links {
+        ul {
+            margin: 0;
+            li {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .attribution {
+        p  {
+            color: $footerTextColor;
+            font-size: $h5-font-size;
+        }
+        .ckan-footer-logo {
+            display: block;
+            width: 68px;
+            height: 21px;
+            margin-top: 2px;
+            background: url("#{$imagePath}/ckan-logo-footer.png") no-repeat top left;
+            text-indent: -900em;
+        }
+    }
+    .lang-select {
+        .form-group { 
+            label {
+                font-size: $h5-font-size;
+            }
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+      
+    }
+}

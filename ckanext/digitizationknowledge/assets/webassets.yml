@@ -12,3 +12,12 @@
 #   output: ckanext-digitizationknowledge/%(version)s-digitizationknowledge.css
 #   contents:
 #     - css/digitizationknowledge.css
+
+main-css:
+  output: digitizationknowledge_theme/%(version)s_main.css
+  contents:
+    - styles/main.css
+  filter: cssrewrite
+  extra:
+    preload:
+      - base/main

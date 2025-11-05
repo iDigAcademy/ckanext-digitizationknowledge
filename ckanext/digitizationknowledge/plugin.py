@@ -88,7 +88,7 @@ class DigitizationknowledgePlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, "templates")
         print("Registering public directory:", os.path.join(os.path.dirname(__file__), 'public'))
         toolkit.add_public_directory(config_, "public")
-        toolkit.add_resource("assets", "digitizationknowledge")
+        toolkit.add_resource("assets", "digitizationknowledge_theme")
 
     
     # IAuthFunctions

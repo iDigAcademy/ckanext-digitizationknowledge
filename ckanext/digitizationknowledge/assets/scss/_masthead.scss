@@ -1,0 +1,218 @@
+$notificationsBg: #C9403A;
+.account-masthead {
+    @extend .clearfix;
+    min-height: 30px;
+    color: $mastheadTextColor;
+    background: #E9E9ED;
+    border-bottom: 1px solid #FFFFFF; 
+    .account {
+        float: right;
+        .badge {
+            border:none;
+        }
+        ul {
+            li {
+                display: block;
+                float: left;
+                    line-height: 31px;
+                a {
+                    display: block;
+                    text-decoration: none;
+                    color: mix($mastheadBackgroundColor, $mastheadLinkColor, 25%);
+                    font-family: $headings-font-family;
+                    font-size: 13px;
+                    font-weight: 600;
+                    padding: 0 10px;
+                    transition: color .2s;
+                    span.username,
+                    span.text {
+                        margin: 0 2px 0 4px;
+                    }
+                    span.text {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+                    &:hover {
+                        color: $link-hover-color;
+                        text-decoration: none;
+                    }
+                    &.sub {
+                        font-weight: 300;
+                    }
+                    .btn {
+                        vertical-align: 1px;
+                        margin-left: 3px;
+                    }
+                }
+            }
+        }
+        .notifications {
+            a {
+                span.badge {
+                    font-size: 12px;
+                    padding-left:0;
+                    text-shadow: none;
+                    color: black;
+                    font-weight: 600;
+                }
+                &:hover span {
+                    color: $link-hover-color;
+                }
+            }
+            &.notifications-important a {
+                span.badge {
+                    color: $mastheadLinkColor;
+                    background-color: $notificationsBg;
+                }
+            }
+        }
+        &.authed {
+            .image {
+                padding: 0 6px;
+                display: flex;
+                align-items:center;
+                img {
+                width: 17px;
+                height:17px;
+                    @include border-radius(4px);
+                }
+            }
+        }
+    }
+}
+
+.masthead {
+    background: linear-gradient(180deg, #F4F4F5 0%, #E3E3E8 100%);
+    @extend .p-2;
+    .debug {
+        position: fixed;
+        top: 0;
+        left: 0;
+        color: $white;
+        background-color: opacify($color: $primary, $amount: 0.3);
+        padding: 2px 4px;
+        border: $white 1px solid;
+        border-left: 0px;
+        z-index: 9;
+    }
+    .navbar {
+        hgroup {
+            h1,
+            h2 {
+                float: left;
+                font-size: 30px;
+                line-height: 1.5;
+            }
+            h1 {
+                font-weight: 900;
+                letter-spacing: -1px;
+                margin: 3px 0;
+            }
+            h2 {
+                position: absolute;
+                bottom: -3px;
+                left: 0;
+                margin: 0;
+                font-size: 15px;
+                font-weight: normal;
+                line-height: 1.2;
+                white-space: nowrap;
+            }
+        }
+        .logo {
+            display: inline-block;
+            img {
+                max-height: $logoMaxHeight;
+            }
+        }
+    }
+    .main-navbar {
+        ul {
+            padding-right: 20px;
+            li {
+                margin: 0.6rem 0.9rem;
+                    position:relative;
+                    &:after{
+                        height:2px;
+                        width:100%;
+                        background:$brand-gradient;
+                        display:block;
+                        content:"";
+                        position:absolute;
+                        bottom:0;
+                        opacity:0;
+                    transition: opacity .4s;
+                        
+                    }
+                   
+                a {
+                    display:inline-block;
+                    color: $brand-blue;
+                    text-decoration: none;
+                    font-weight:500;
+                    font-size:15px;
+                    transition: color .2s, transform .4s;
+                   
+                   
+
+                }
+                &:hover,
+                &:focus,
+                &.active {
+                    &:after {
+                        opacity: 1;
+                    }
+                    a {
+                        color:$nav-link-hover-color;
+                        transform:translateY(-5px);
+                        
+                        /*
+                        border-radius: $spacer * 0.3;
+                        background-color: darken($mastheadBackgroundColor, 10%);
+                        */
+                    }
+                }
+            }
+        }
+        .site-search {
+            button {
+                display: flex;
+                align-items: center;
+                margin-left: -50px;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .masthead {
+        .main-navbar {
+            ul {
+                padding: 0;
+                li {
+                    padding: 0;
+                    a {
+                        display: block;
+                        padding: $nav-link-padding-y $nav-link-padding-x;
+                        @include font-size($nav-link-font-size);
+                        font-weight: $nav-link-font-weight;
+                        text-decoration: if($link-decoration == none, null, none);
+                        @include transition($nav-link-transition);
+
+                        &:hover,
+                        &:focus {
+                            text-decoration: if($link-hover-decoration == underline, none, null);
+                        }
+
+                        &.disabled {
+                            color: $nav-link-disabled-color;
+                            pointer-events: none;
+                            cursor: default;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
