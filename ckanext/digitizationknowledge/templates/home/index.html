@@ -1,1 +1,123 @@
-{% ckan_extends %}
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _("Welcome") }}{% endblock %}
+
+{% block maintag %}{% endblock %}
+{% block toolbar %}{% endblock %}
+
+{% block content %}
+<div class="homepage">
+  <div id="content" class="container">
+    {{ self.flash() }}
+  </div>
+  {% block primary_content %}
+  <div role="main">
+    <div class="main hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            {% block promoted %}
+            {% snippet 'home/snippets/promoted.html' %}
+            {% endblock %}
+          </div>
+          <div class="col-md-6">
+            {% block search %}
+            {% snippet 'home/snippets/search.html', search_facets=search_facets %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main module-feeds">
+      <div class="container">
+        <div class="row">
+          <div class="section-header mb-2">
+            <div class="section-header__headline-wrap mb-4">
+            <h2 class="section-header__headline">Featured Content – Organizations and Groups</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            {% block featured_organization %}
+            <h3 class="h3 fw-bold mb-4 text-center">Organizations</h3>
+            {% snippet 'home/snippets/featured_organization.html' %}
+            {% endblock %}
+          </div>
+          <div class="col-md-6">
+            {# Note: this featured_group block is used as an example in the theming
+            tutorial in the docs! If you change this code, be sure to check
+            whether you need to update the docs. #}
+            {# Start template block example. #}
+            {% block featured_group %}
+            <h3 class="h3 fw-bold mb-4 text-center">Groups</h3>
+            {% snippet 'home/snippets/featured_group.html' %}
+            {% endblock %}
+            {# End template block example. #}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="home-about container">
+      <div class="row">
+        <div class="section-header">
+          <div class="section-header__headline-wrap">
+            <h2 class="section-header__headline">Our Approach – A Strategy Built for You.</h2>
+          </div>
+          <div class="section-header__copy">
+            <p>
+
+              Digitization knowledge provides a comprehensive knowledge base of digitization resources. We bring together resources created by the community and provide powerful tools to make them easily discoverable and accessible to all.
+            </p>
+          </div>
+        </div>
+      </div>
+    <div class="row justify-content-around">
+        <h3 class="home-about-blocks__headline">
+        Digitization Knowledge is built upon three core components:
+        </h3>
+        <div class="home-about-blocks">
+          <div class="home-about-block">
+            <img src="/base/images/dk-owl-aggregate-red.svg" class="home-about-block__graphic">
+            <div class="home-about-block__content">
+
+              <h3 class="home-about-block__headline">
+                Aggregate
+              </h3>
+              <div class="home-about-block__copy">
+                <p>We bring together a collection of essential resources to support your digitization work.</p>
+              </div>
+            </div>
+          </div>
+          <div class="home-about-block">
+            <img src="/base/images/dk-owl-enrich-yellow.svg" class="home-about-block__graphic">
+            <div class="home-about-block__content">
+
+              <h3 class="home-about-block__headline">
+                Enrich
+              </h3>
+              <div class="home-about-block__copy">
+                <p>We enhance resource discovery by adding tailored metadata, making relevant materials easier and faster to find.</p>
+              </div>
+            </div>
+          </div>
+          <div class="home-about-block">
+            <img src="/base/images/dk-owl-engage-green.svg" class="home-about-block__graphic">
+            <div class="home-about-block__content">
+
+              <h3 class="home-about-block__headline">
+                Engage
+              </h3>
+              <div class="home-about-block__copy">
+                <p>We foster a collaborative environment for discussing resources so that we can learn from each other's experiences.</p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+</div>
+{% endblock %}

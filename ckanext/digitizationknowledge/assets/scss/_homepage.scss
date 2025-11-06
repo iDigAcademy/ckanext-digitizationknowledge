@@ -1,0 +1,117 @@
+.homepage {
+    .hero .container {
+        background: linear-gradient(90deg, rgba(19, 42, 136, 0.7) 0%, rgba(4, 134, 123, 0.7) 100%), linear-gradient(0deg, rgba(56, 80, 174, 0.4), rgba(56, 80, 174, 0.4)), url("#{$imagePath}/butterfly.jpg");
+        border-radius: 15px;
+        background-size:cover;
+        padding: 30px 20px;
+        @include media-breakpoint-up(lg) {
+        padding: 80px;
+        }
+    }
+    .hero {
+        color:white;
+        margin:20px;
+        @include media-breakpoint-up(lg) {
+        margin:20px 0;
+    }
+        
+        h2 {
+            
+        @include media-breakpoint-up(xl){
+        font-size: 43px;
+        line-height: 49px;
+        }
+    }
+        h3 {
+            font-weight:500;
+            font-size:25px;
+        }
+    }
+    .module-promotion {
+        background: $white;
+        padding: 30px;
+    }
+    .module-search {
+        color: #fff;
+       padding: 20px;
+        @include media-breakpoint-up(lg) {
+       padding: 40px;
+   }
+        background: rgba(6, 24, 94, 0.4);
+           border-radius: 10px;
+           border: none;
+        
+ 
+        
+        .search-form {
+            padding:0;
+            background:transparent;
+            input {
+                font-size: 16px;
+                padding: 15px;
+            }
+            button {
+                border: none;
+                margin-left: -40px;
+            }
+        }
+        .search-input {
+            display: flex;
+            bottom {
+                margin-left: -30px;
+                align-items: center;
+            }
+        }
+        .tags {
+            border-radius: 90px;
+            display:inline-flex;
+            flex-wrap:wrap;
+               flex-direction:column;
+               .tag:not(:last-of-type) {
+           @include media-breakpoint-down(sm) { 
+                   margin-bottom:1rem;
+               }
+           }
+           .tag {
+              margin:5px;  
+           }
+            
+           @include media-breakpoint-up(lg) { 
+            background: rgba(27, 45, 118, 0.4);
+               flex-direction:row;
+            padding: 12px 12px 12px 25px;
+           }
+            align-items:center;
+
+            h3 {
+                font-size: $font-size-base;
+                line-height: $line-height-base;
+                font-family:$font-family-sans-serif;
+                font-weight: 400;
+                font-size: 13px;
+                margin-bottom:0;
+
+                
+            }
+            
+        }
+    }
+    .module-feeds {
+        padding: $spacer * 2 0;
+    }
+}
+
+@include media-breakpoint-down(md){
+    .homepage {
+        .module-search {
+            margin-top: $spacer * .5;
+        }
+        .module-feeds {
+            .card {
+                margin-top: $spacer * 1;
+                margin-bottom: $spacer * 1;
+            }
+
+        }
+    }
+}
