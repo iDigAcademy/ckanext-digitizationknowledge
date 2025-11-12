@@ -48,6 +48,11 @@ dataset_fields:
   form_snippet: markdown.html
   display_property: schema:abstract
 
+- field_name: license_id
+  label: License
+  form_snippet: license.html
+  help_text: License definitions and additional information can be found at http://opendefinition.org/
+
 - field_name: category
   label: Category
   preset: select
@@ -181,7 +186,12 @@ resource_fields:
   preset: date
   display_property: schema:end_date
   required: True
-  
+
+- field_name: license_id
+  label: License
+  form_snippet: license.html
+  help_text: License definitions and additional information can be found at http://opendefinition.org/
+
 - field_name: in_language
   label: Language
   preset: multiple_select
