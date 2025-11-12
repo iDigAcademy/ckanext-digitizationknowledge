@@ -74,6 +74,11 @@ dataset_fields:
   label: Issue Number
   display_property: schema:issueNumber
 
+- field_name: pagination
+  label: Pagination
+  form_placeholder: e.g., 1-5
+  display_property: schema:pagination
+
 - field_name: date_created
   label: Date Created
   preset: date
@@ -89,11 +94,6 @@ dataset_fields:
   preset: date
   display_property: schema:datePublished
 
-- field_name: pagination
-  label: Pagination
-  form_placeholder: e.g., 1-5
-  display_property: schema:pagination
-
 - field_name: version
   label: Version
   validators: ignore_missing unicode_safe package_version_validator
@@ -104,6 +104,10 @@ dataset_fields:
   label: License
   form_snippet: license.html
   help_text: License definitions and additional information can be found at http://opendefinition.org/
+
+- field_name: notes
+  label: Description
+  form_snippet: markdown.html
 
 - field_name: in_language
   label: Language
@@ -144,10 +148,6 @@ dataset_fields:
   label: Organization
   preset: dataset_organization
   required: True
-
-- field_name: notes
-  label: Description
-  form_snippet: markdown.html
 
 - field_name: category
   label: Category
