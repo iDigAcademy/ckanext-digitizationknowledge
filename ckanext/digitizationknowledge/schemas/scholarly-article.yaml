@@ -100,6 +100,11 @@ dataset_fields:
   form_placeholder: 'e.g., 1.0'
   display_property: schema:version
 
+- field_name: license_id
+  label: License
+  form_snippet: license.html
+  help_text: License definitions and additional information can be found at http://opendefinition.org/
+
 - field_name: in_language
   label: Language
   preset: multiple_select
