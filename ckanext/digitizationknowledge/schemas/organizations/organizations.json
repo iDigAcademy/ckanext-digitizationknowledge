@@ -1,0 +1,50 @@
+{
+  "organization_type": "organization",
+  "about_url": "https://github.com/iDigAcademy/ckanext-digitizationknowledge",
+  "fields": [
+    {
+      "field_name": "title",
+      "label": "Name",
+      "validators": "ignore_missing unicode_safe",
+      "form_snippet": "large_text.html",
+      "form_attrs": {"data-module": "slug-preview-target"},
+      "form_placeholder": "My Organization"
+    },
+    {
+      "field_name": "name",
+      "label": "URL",
+      "validators": "not_empty unicode_safe name_validator group_name_validator",
+      "form_snippet": "slug.html",
+      "form_placeholder": "my-organization"
+    },
+    {
+      "field_name": "notes",
+      "label": "Description",
+      "form_snippet": "markdown.html",
+      "form_placeholder": "A little information about my organization..."
+    },
+    {
+      "field_name": "url",
+      "label": "Image URL",
+      "form_placeholder": "http://example.com/my-image.jpg"
+    },
+    {
+      "field_name": "is_featured",
+      "label": "Featured",
+      "form_placeholder": "Should it be featured in front page?",
+      "preset": "radio",
+      "choices": [
+        {
+          "value": true,
+          "label": "Yes"
+        },
+        {
+          "value": false,
+          "label": "No"
+        }
+      ],
+      "validators": "boolean_validator",
+      "output_validators": "boolean_validator"
+    }
+  ]
+}
