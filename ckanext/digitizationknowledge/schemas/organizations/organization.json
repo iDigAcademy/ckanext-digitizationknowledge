@@ -26,6 +26,7 @@
     {
       "field_name": "url",
       "label": "Image URL",
+      "preset": "organization_url_upload",
       "form_placeholder": "http://example.com/my-image.jpg"
     },
     {
