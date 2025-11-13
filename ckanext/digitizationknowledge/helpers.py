@@ -1,3 +1,4 @@
+import ckan.plugins.toolkit as toolkit
 
 # Define Template helper functions
 def get_custom_featured_groups():
