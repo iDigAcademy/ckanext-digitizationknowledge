@@ -4,25 +4,18 @@ from typing import Any
 # Define Template helper functions
 def get_custom_featured_groups(count: int = 1):
     '''
-    Returns a list of featured groups using an extra field as filter
+    Returns a list of featured groups using the is_featured field.
+    Uses group_show to reliably get the is_featured field for each group.
     '''
     try:
-        # Get all groups with basic fields to filter
-        groups = toolkit.get_action('group_list')(
-            {},
-            {'all_fields': True, 'include_extras': True}
-        )
-        # Filter for featured groups
-        featured_group_ids = [
-            group.get('name') or group.get('id') for group in groups 
-            if group.get('is_featured')
-        ]
+        # Get all groups (just names)
+        all_groups = toolkit.get_action('group_list')({}, {})
         
-        # Get full details for each featured group
         groups_data = []
-        for group_id in featured_group_ids:
+        for group_name in all_groups:
             if len(groups_data) >= count:
                 break
+            
             try:
                 context = {
                     'ignore_auth': True,
@@ -30,39 +23,36 @@ def get_custom_featured_groups(count: int = 1):
                     'for_view': True
                 }
                 data_dict = {
-                    'id': group_id,
+                    'id': group_name,
                     'include_datasets': True
                 }
+                # group_show DOES return is_featured reliably
                 group = toolkit.get_action('group_show')(context, data_dict)
-                groups_data.append(group)
+                
+                # Check if featured (field is in the show response)
+                if group.get('is_featured'):
+                    groups_data.append(group)
             except toolkit.ObjectNotFound:
                 continue
         
         return groups_data
-    except toolkit.NotAuthorized:
+    except Exception:
         return []
 
 def get_custom_featured_organizations(count: int = 1):
     '''
-    Returns a custom list of featured organizations using field in extras
+    Returns a list of featured organizations using the is_featured field.
+    Uses organization_show to reliably get the is_featured field for each org.
     '''
     try:
-        # Get all organizations with basic fields to filter
-        orgs = toolkit.get_action('organization_list')(
-            {},
-            {'all_fields': True, 'include_extras': True}
-        )
-        # Filter for featured organizations
-        featured_org_ids = [
-            org.get('name') or org.get('id') for org in orgs 
-            if org.get('is_featured')
-        ]
+        # Get all organizations (just names)
+        all_orgs = toolkit.get_action('organization_list')({}, {})
         
-        # Get full details for each featured organization
         orgs_data = []
-        for org_id in featured_org_ids:
+        for org_name in all_orgs:
             if len(orgs_data) >= count:
                 break
+            
             try:
                 context = {
                     'ignore_auth': True,
@@ -70,16 +60,20 @@ def get_custom_featured_organizations(count: int = 1):
                     'for_view': True
                 }
                 data_dict = {
-                    'id': org_id,
+                    'id': org_name,
                     'include_datasets': True
                 }
+                # organization_show DOES return is_featured reliably
                 org = toolkit.get_action('organization_show')(context, data_dict)
-                orgs_data.append(org)
+                
+                # Check if featured (field is in the show response)
+                if org.get('is_featured'):
+                    orgs_data.append(org)
             except toolkit.ObjectNotFound:
                 continue
         
         return orgs_data
-    except toolkit.NotAuthorized:
+    except Exception:
         return []
 
 def get_helpers():
