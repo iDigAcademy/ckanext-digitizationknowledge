@@ -68,9 +68,17 @@
 		  {% if package.in_language %}
 			<li><strong>{{ _('Language') }}:</strong> {% for language in package.in_language %}{{ language }}{% endfor %}</li>
 		  {% endif %}
-		  {# Published date - assuming field name, adjust as needed #}
+		  {# Metadata dates #}
 		  {% if package.metadata_created %}
-			<li><strong>{{ _('Created') }}:</strong> {{ h.render_datetime(package.metadata_created, date_format='%Y-%m-%d') }}</li>
+			<li><strong>{{ _('Metadata Creation Date') }}:</strong> {{ h.render_datetime(package.metadata_created, date_format='%Y-%m-%d') }}</li>
+		  {% endif %}
+		  {# Resource dates - prefer modified, then published, then created #}
+		  {% if package.date_modified %}
+			<li><strong>{{ _('Resource Modified Date') }}:</strong> {{ h.render_datetime(package.date_modified, date_format='%Y-%m-%d') }}</li>
+		  {% elif package.date_published %}
+			<li><strong>{{ _('Resource Date Published') }}:</strong> {{ h.render_datetime(package.date_published, date_format='%Y-%m-%d') }}</li>
+		  {% elif package.date_created %}
+			<li><strong>{{ _('Resource Date Created') }}:</strong> {{ h.render_datetime(package.date_created, date_format='%Y-%m-%d') }}</li>
 		  {% endif %}
 		</ul>
 		  {# This are the badges for the individual files that will no longer be shown #}
