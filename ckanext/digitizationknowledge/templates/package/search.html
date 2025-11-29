@@ -10,67 +10,36 @@
   </li>
 {% endblock %}
 
-{% block page_primary_action%}
+{% block page_primary_action %}
 {% if h.check_access('package_create') %}
-<div class="page_primary_action">
-  <!-- {% snippet 'snippets/add_dataset.html', dataset_type=dataset_type %} -->
+<div class="page_primary_action d-flex align-items-center flex-wrap gap-2">
+  
+  {# Add Resource dropdown #}
+  <div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      {{ _('Add Resource') }}
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{{ h.url_for('book.new') }}">{{ _('Book') }}</a></li>
+      <li><a class="dropdown-item" href="{{ h.url_for('digital-document.new') }}">{{ _('Digital Document') }}</a></li>
+      <li><a class="dropdown-item" href="{{ h.url_for('event.new') }}">{{ _('Event') }}</a></li>
+      <li><a class="dropdown-item" href="{{ h.url_for('learning-resource.new') }}">{{ _('Learning Resource') }}</a></li>
+      <li><a class="dropdown-item" href="{{ h.url_for('scholarly-article.new') }}">{{ _('Scholarly Article') }}</a></li>
+      <li><a class="dropdown-item" href="{{ h.url_for('software-application.new') }}">{{ _('Software Application') }}</a></li>
+      <li><a class="dropdown-item" href="{{ h.url_for('software-source-code.new') }}">{{ _('Software Source Code') }}</a></li>
+      <li><a class="dropdown-item" href="{{ h.url_for('video-object.new') }}">{{ _('Video Object') }}</a></li>
+      <li><a class="dropdown-item" href="{{ h.url_for('web-content.new') }}">{{ _('Web Content') }}</a></li>
+    </ul>
+  </div>
 
-  <!-- Dropdown Menu for Extra Dataset Types -->
-  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-  {{ _('Add Resource') }}
-  </button>
-  <ul class="dropdown-menu">
-    <!-- Manually Define Additional Dataset Types -->
-    <li>
-      <a class="dropdown-item" href="{{ h.url_for('book.new') }}">
-      {{ _('Book') }}
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="{{ h.url_for('digital-document.new') }}">
-      {{ _('Digital Document') }}
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="{{ h.url_for('event.new') }}">
-      {{ _('Event') }}
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="{{ h.url_for('learning-resource.new') }}">
-      {{ _('Learning Resource') }}
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="{{ h.url_for('scholarly-article.new') }}">
-      {{ _('Scholarly Article') }}
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="{{ h.url_for('software-application.new') }}">
-      {{ _('Software Application') }}
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="{{ h.url_for('software-source-code.new') }}">
-      {{ _('Software Source Code') }}
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="{{ h.url_for('video-object.new') }}">
-      {{ _('Video Object') }}
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="{{ h.url_for('web-content.new') }}">
-      {{ _('Web Content') }}
-      </a>
-    </li>
-  </ul>
+  {# NEW: Group Add Toolbar - only for authenticated users #}
+  {% if current_user.is_authenticated %}
+    {% snippet 'digitizationknowledge/snippets/group_add_toolbar.html' %}
+  {% endif %}
 
 </div>
 {% endif %}
-{%endblock%}
+{% endblock %}
 
 
 {% block form %}
@@ -92,8 +61,13 @@
 {% endblock %}
 
 
-{% block secondary_content %}
+{% block package_search_results_list %}
+  {# Override to use our custom package list with group add buttons #}
+  {% snippet 'digitizationknowledge/snippets/package_list_group_add.html', packages=page.items %}
+{% endblock %}
 
+
+{% block secondary_content %}
 
 {% set basic_facets = ['task_clusters', 'task', 'preparations', 'tags', 'digitization_academy_course', 'discipline', 'audience', 'in_language', ] %}
 {% set all_facet_keys = facet_titles.keys() | list %}
@@ -130,7 +104,6 @@
                 class="btn btn-outline-secondary btn-sm">
           <i class="fa fa-chevron-down"
              :class="{ 'fa-chevron-down': !showAdvanced, 'fa-chevron-up': showAdvanced }"></i>
-          <!-- Text spans - one visible by default, Alpine toggles them -->
           <span x-show="!showAdvanced">{{ _('Show More Filters') }}</span>
           <span x-show="showAdvanced" style="display: none;">{{ _('Show Fewer Filters') }}</span>
         </button>
