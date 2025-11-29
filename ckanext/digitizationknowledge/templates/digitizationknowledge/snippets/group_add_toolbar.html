@@ -1,10 +1,5 @@
 {#
 Group Add Toolbar - Alpine.js component for bulk adding datasets to groups.
-
-This component:
-1. Persists state in sessionStorage (survives page reload)
-2. Fetches groups via HTMX/fetch when enabled
-3. Controls visibility of checkboxes in dataset list
 #}
 
 <div x-data="groupAddManager()" 
@@ -47,18 +42,18 @@ function groupAddManager() {
     selectedGroupId: '',
     selectedGroupName: '',
     loading: false,
+    _restoredGroupId: '',  // Temporary storage for restored ID
 
-    // Initialize - restore state from sessionStorage
     init() {
       const saved = sessionStorage.getItem('groupAddState');
       if (saved) {
         try {
           const state = JSON.parse(saved);
           this.enabled = state.enabled || false;
-          this.selectedGroupId = state.selectedGroupId || '';
+          this._restoredGroupId = state.selectedGroupId || '';
           this.selectedGroupName = state.selectedGroupName || '';
           
-          // If was enabled, fetch groups again
+          // If was enabled, fetch groups (this will restore selection after fetch)
           if (this.enabled) {
             this.fetchGroups();
           }
@@ -68,7 +63,6 @@ function groupAddManager() {
       }
     },
 
-    // Save state to sessionStorage
     saveState() {
       const state = {
         enabled: this.enabled,
@@ -81,7 +75,6 @@ function groupAddManager() {
       window.dispatchEvent(new CustomEvent('groupAddStateChanged', { detail: state }));
     },
 
-    // Toggle enabled state
     toggle() {
       this.enabled = !this.enabled;
       
@@ -91,13 +84,13 @@ function groupAddManager() {
         // Reset state when disabling
         this.selectedGroupId = '';
         this.selectedGroupName = '';
+        this._restoredGroupId = '';
         this.groups = [];
       }
       
       this.saveState();
     },
 
-    // Fetch groups from server
     async fetchGroups() {
       this.loading = true;
       try {
@@ -107,13 +100,17 @@ function groupAddManager() {
         if (data.success) {
           this.groups = data.groups;
           
-          // If we had a previously selected group, verify it still exists
-          if (this.selectedGroupId) {
-            const stillExists = this.groups.some(g => g.id === this.selectedGroupId);
-            if (!stillExists) {
+          // Restore previously selected group if it exists in the list
+          if (this._restoredGroupId) {
+            const stillExists = this.groups.find(g => g.id === this._restoredGroupId);
+            if (stillExists) {
+              this.selectedGroupId = this._restoredGroupId;
+              this.selectedGroupName = stillExists.display_name;
+            } else {
               this.selectedGroupId = '';
               this.selectedGroupName = '';
             }
+            this._restoredGroupId = '';  // Clear after restore attempt
           }
         } else {
           console.error('Failed to fetch groups:', data.error);
@@ -124,11 +121,11 @@ function groupAddManager() {
         this.groups = [];
       } finally {
         this.loading = false;
+        // Dispatch event after groups loaded and selection restored
         this.saveState();
       }
     },
 
-    // Handle group selection change
     onGroupSelect() {
       const selected = this.groups.find(g => g.id === this.selectedGroupId);
       this.selectedGroupName = selected ? selected.display_name : '';
