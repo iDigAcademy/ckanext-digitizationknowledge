@@ -1,0 +1,71 @@
+{#
+Group Add Button - Shows add/status button for a single dataset.
+
+Parameters:
+  - dataset_id: The ID of the dataset
+
+This listens to the groupAddStateChanged event and fetches status via HTMX.
+#}
+
+{% set dataset_id = dataset_id or '' %}
+
+<div class="group-add-button d-inline-block"
+     x-data="{ 
+       enabled: false, 
+       groupId: '',
+       datasetId: '{{ dataset_id }}'
+     }"
+     x-init="
+       // Listen for state changes from toolbar
+       window.addEventListener('groupAddStateChanged', (e) => {
+         enabled = e.detail.enabled;
+         groupId = e.detail.selectedGroupId;
+         
+         // Trigger HTMX to fetch status if group is selected
+         if (enabled && groupId && datasetId) {
+           $nextTick(() => {
+             htmx.trigger($refs.statusContainer, 'fetchStatus');
+           });
+         }
+       });
+       
+       // Check initial state from sessionStorage
+       const saved = sessionStorage.getItem('groupAddState');
+       if (saved) {
+         try {
+           const state = JSON.parse(saved);
+           enabled = state.enabled || false;
+           groupId = state.selectedGroupId || '';
+           
+           if (enabled && groupId && datasetId) {
+             $nextTick(() => {
+               htmx.trigger($refs.statusContainer, 'fetchStatus');
+             });
+           }
+         } catch (e) {}
+       }
+     ">
+  
+  {# Container that shows/hides based on state #}
+  <template x-if="enabled">
+    <span x-ref="statusContainer"
+          :hx-get="groupId ? '/group-add/status/' + groupId + '/' + datasetId : null"
+          hx-trigger="fetchStatus"
+          hx-swap="innerHTML">
+      
+      {# Initial state - disabled until group selected #}
+      <template x-if="!groupId">
+        <span class="badge bg-secondary">
+          <i class="fa fa-folder"></i> --
+        </span>
+      </template>
+      
+      {# Loading state while fetching #}
+      <template x-if="groupId">
+        <span class="badge bg-light text-muted">
+          <i class="fa fa-spinner fa-spin"></i>
+        </span>
+      </template>
+    </span>
+  </template>
+</div>

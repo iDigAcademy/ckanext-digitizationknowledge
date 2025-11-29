@@ -1,0 +1,145 @@
+{#
+Group Add Toolbar - Alpine.js component for bulk adding datasets to groups.
+
+This component:
+1. Persists state in sessionStorage (survives page reload)
+2. Fetches groups via HTMX/fetch when enabled
+3. Controls visibility of checkboxes in dataset list
+#}
+
+<div x-data="groupAddManager()" 
+     x-init="init()"
+     class="group-add-toolbar d-inline-block ms-2">
+  
+  {# Toggle Button #}
+  <button type="button" 
+          class="btn btn-sm"
+          :class="enabled ? 'btn-warning' : 'btn-outline-secondary'"
+          @click="toggle()">
+    <i class="fa" :class="enabled ? 'fa-times' : 'fa-folder-plus'"></i>
+    <span x-text="enabled ? '{{ _('Disable Group Add') }}' : '{{ _('Enable Group Add') }}'"></span>
+  </button>
+
+  {# Group Dropdown - only visible when enabled #}
+  <template x-if="enabled">
+    <div class="d-inline-block ms-2">
+      <select class="form-select form-select-sm d-inline-block w-auto"
+              x-model="selectedGroupId"
+              @change="onGroupSelect()"
+              :disabled="loading">
+        <option value="">{{ _('-- Select a Group --') }}</option>
+        <template x-for="group in groups" :key="group.id">
+          <option :value="group.id" x-text="group.display_name"></option>
+        </template>
+      </select>
+      <span x-show="loading" class="ms-1">
+        <i class="fa fa-spinner fa-spin"></i>
+      </span>
+    </div>
+  </template>
+</div>
+
+<script>
+function groupAddManager() {
+  return {
+    enabled: false,
+    groups: [],
+    selectedGroupId: '',
+    selectedGroupName: '',
+    loading: false,
+
+    // Initialize - restore state from sessionStorage
+    init() {
+      const saved = sessionStorage.getItem('groupAddState');
+      if (saved) {
+        try {
+          const state = JSON.parse(saved);
+          this.enabled = state.enabled || false;
+          this.selectedGroupId = state.selectedGroupId || '';
+          this.selectedGroupName = state.selectedGroupName || '';
+          
+          // If was enabled, fetch groups again
+          if (this.enabled) {
+            this.fetchGroups();
+          }
+        } catch (e) {
+          console.error('Failed to restore group add state:', e);
+        }
+      }
+    },
+
+    // Save state to sessionStorage
+    saveState() {
+      const state = {
+        enabled: this.enabled,
+        selectedGroupId: this.selectedGroupId,
+        selectedGroupName: this.selectedGroupName
+      };
+      sessionStorage.setItem('groupAddState', JSON.stringify(state));
+      
+      // Dispatch custom event so package items can react
+      window.dispatchEvent(new CustomEvent('groupAddStateChanged', { detail: state }));
+    },
+
+    // Toggle enabled state
+    toggle() {
+      this.enabled = !this.enabled;
+      
+      if (this.enabled) {
+        this.fetchGroups();
+      } else {
+        // Reset state when disabling
+        this.selectedGroupId = '';
+        this.selectedGroupName = '';
+        this.groups = [];
+      }
+      
+      this.saveState();
+    },
+
+    // Fetch groups from server
+    async fetchGroups() {
+      this.loading = true;
+      try {
+        const response = await fetch('/group-add/groups');
+        const data = await response.json();
+        
+        if (data.success) {
+          this.groups = data.groups;
+          
+          // If we had a previously selected group, verify it still exists
+          if (this.selectedGroupId) {
+            const stillExists = this.groups.some(g => g.id === this.selectedGroupId);
+            if (!stillExists) {
+              this.selectedGroupId = '';
+              this.selectedGroupName = '';
+            }
+          }
+        } else {
+          console.error('Failed to fetch groups:', data.error);
+          this.groups = [];
+        }
+      } catch (e) {
+        console.error('Error fetching groups:', e);
+        this.groups = [];
+      } finally {
+        this.loading = false;
+        this.saveState();
+      }
+    },
+
+    // Handle group selection change
+    onGroupSelect() {
+      const selected = this.groups.find(g => g.id === this.selectedGroupId);
+      this.selectedGroupName = selected ? selected.display_name : '';
+      this.saveState();
+    }
+  };
+}
+</script>
+
+<style>
+.group-add-toolbar {
+  vertical-align: middle;
+}
+</style>

@@ -1,0 +1,63 @@
+{#
+Package list with group add buttons.
+Based on CKAN's snippets/package_list.html but adds group add button to each item.
+#}
+
+{% block package_list %}
+  {% if packages %}
+    <ul class="dataset-list list-unstyled">
+      {% for package in packages %}
+        <li class="dataset-item">
+          <div class="d-flex justify-content-between align-items-start">
+            
+            {# Main dataset content #}
+            <div class="dataset-content flex-grow-1">
+              <h2 class="dataset-heading">
+                {% if package.private %}
+                  <span class="dataset-private badge bg-secondary">
+                    <i class="fa fa-lock"></i> {{ _('Private') }}
+                  </span>
+                {% endif %}
+                <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}">
+                  {{ (package.title or package.name)|truncate(80) }}
+                </a>
+                {% if package.get('state', '').startswith('draft') %}
+                  <span class="badge bg-info">{{ _('Draft') }}</span>
+                {% elif package.get('state', '').startswith('deleted') %}
+                  <span class="badge bg-danger">{{ _('Deleted') }}</span>
+                {% endif %}
+              </h2>
+              
+              {% set notes = h.markdown_extract(package.notes, extract_length=180) %}
+              {% if notes %}
+                <div>{{ notes|urlize }}</div>
+              {% else %}
+                <p class="empty">{{ h.humanize_entity_type('package', package.type, 'no description') or _("There is no description for this dataset") }}</p>
+              {% endif %}
+              
+              {% if package.resources %}
+                <ul class="dataset-resources list-unstyled">
+                  {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+                    <li>
+                      <a href="{{ h.url_for(package.type ~ '.read', id=package.name) }}" 
+                         class="badge badge-default" 
+                         data-format="{{ resource.lower() }}">{{ resource }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+            
+            {# Group add button - only for authenticated users #}
+            {% if current_user.is_authenticated %}
+              <div class="ms-3">
+                {% snippet 'digitizationknowledge/snippets/group_add_button.html', dataset_id=package.id %}
+              </div>
+            {% endif %}
+            
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
