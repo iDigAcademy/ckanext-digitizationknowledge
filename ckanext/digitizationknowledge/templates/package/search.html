@@ -61,12 +61,6 @@
 {% endblock %}
 
 
-{% block package_search_results_list %}
-  {# Override to use our custom package list with group add buttons #}
-  {% snippet 'digitizationknowledge/snippets/package_list_group_add.html', packages=page.items %}
-{% endblock %}
-
-
 {% block secondary_content %}
 
 {% set basic_facets = ['task_clusters', 'task', 'preparations', 'tags', 'digitization_academy_course', 'discipline', 'audience', 'in_language', ] %}
