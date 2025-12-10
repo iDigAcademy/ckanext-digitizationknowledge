@@ -1,4 +1,117 @@
-<section class="container">
-  <h1>Terms of Use</h1>
-  <p>Welcome to the Terms of Use page.</p>
-</section>
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _("Terms of Use") }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="breadcrumb-item active">{{ _("Terms of Use") }}</li>
+{% endblock %}
+
+{% block secondary %}{% endblock %}
+
+{% block primary %}
+<main class="primary col-12" role="main">
+  {% block primary_content %}
+  <article class="module">
+    <div class="module-content">
+      {% block primary_content_inner %}
+
+      <header class="mb-4 pb-3 border-bottom">
+        <h1 class="h2 mb-2">Terms of Use</h1>
+        <p class="text-muted mb-0">This document explains the rules for using &lt;Digitization Knowledge&gt; and your rights and responsibilities as a user.</p>
+      </header>
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Definitions</h2>
+        <p><strong>Services:</strong> The &lt;Digitization Knowledge&gt; web application and its contents, including the application programming interface (API).</p>
+        <p><strong>User:</strong> Anyone who accesses or uses the Services.</p>
+        <p class="mb-0"><strong>Data:</strong> Structured metadata stored in records related to digitization resources.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">About Us</h2>
+        <p class="mb-0">&lt;Digitization Knowledge&gt; is part of the <a href="https://www.idigbio.org/">Integrated Digitized Biocollections (iDigBio)</a> project and is provided via an iDigBio's domain based at <a href="https://www.fsu.edu/">Florida State University (FSU)</a>.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Acceptance of Terms</h2>
+        <p class="mb-0">By using the website, API, data, information, or other products or services offered by &lt;Digitization Knowledge&gt;, you agree to these Terms of Use. Your continued use of the Services means you accept these Terms, including any future changes.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">External Resources and Third-Party Content</h2>
+        <p>We provide links to external materials and resources. We do not own, control, or host these external resources, and all linked materials remain the property of their respective owners.</p>
+        <p class="mb-0">We are not responsible for the validity, accuracy, or availability of any external materials. Links may become unavailable over time. The inclusion of a link does not imply endorsement.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Access to Paid Materials</h2>
+        <p class="mb-0">We provide links and references to external resources only. We do not provide access to paid or subscription-based materials. Users are responsible for obtaining their own access through appropriate channels.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">User Conduct</h2>
+        <p>By using the Services, you agree to:</p>
+        <ul class="mb-0">
+          <li>Use the Services only for lawful purposes</li>
+          <li>Not post content that is offensive, defamatory, abusive, obscene, harassing, or otherwise inappropriate</li>
+          <li>Not misrepresent your identity or affiliation</li>
+          <li>Not attempt to interfere with the proper functioning of the Services</li>
+          <li>Not use automated tools (such as bots, crawlers, or scrapers) to access the Services in a way that places excessive load on our systems or bypasses our API</li>
+        </ul>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Automated Access</h2>
+        <p class="mb-0">You may not use automated tools (such as bots, crawlers, or scrapers) to access the Services in a way that places excessive load on our systems or bypasses our API. If you need programmatic access to our data, please use our official API.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Content Moderation</h2>
+        <p class="mb-0">All user-generated content, including comments, is subject to review by administrators. We reserve the right to edit, remove, or reject any content at any time and for any reason without prior notice.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Disclaimers and Limitation of Liability</h2>
+        <p class="mb-0">&lt;Digitization Knowledge&gt; is provided "as is" without warranties of any kind. We do not guarantee the accuracy or completeness of any Data. We are not liable for any loss or damages resulting from your use of or reliance on the Services.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Changes to These Terms</h2>
+        <p class="mb-0">We may update these Terms at any time by posting a revised version on this website. Your continued use of the Services after changes are posted means you accept the updated Terms.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Contact</h2>
+        <p class="mb-0">If you have questions about these Terms, please contact <a href="mailto:contact@example.com">&lt;CONTACT_EMAIL&gt;</a>.</p>
+      </section>
+
+      <footer class="mt-5 pt-3 border-top">
+        <p class="text-muted small mb-0">Last updated: <time datetime="2025-01">January 2025</time></p>
+      </footer>
+
+      {% endblock %}
+    </div>
+  </article>
+  {% endblock %}
+</main>
+{% endblock %}

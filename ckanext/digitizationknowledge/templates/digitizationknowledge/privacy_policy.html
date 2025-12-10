@@ -1,4 +1,121 @@
-<section class="container">
-  <h1>Privacy Policy</h1>
-  <p>Welcome to the Privacy Policy page.</p>
-</section>
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _("Privacy Policy") }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="breadcrumb-item active">{{ _("Privacy Policy") }}</li>
+{% endblock %}
+
+{% block secondary %}{% endblock %}
+
+{% block primary %}
+<main class="primary col-12" role="main">
+  {% block primary_content %}
+  <article class="module">
+    <div class="module-content">
+      {% block primary_content_inner %}
+
+      <header class="mb-4 pb-3 border-bottom">
+        <h1 class="h2 mb-2">Privacy Policy</h1>
+        <p class="text-muted mb-0">This document explains what personal information we collect, how we use it, and your rights regarding your data. For information about who we are, see the About Us section in our <a href="{{ h.url_for('digitizationknowledge.terms_of_use') }}">Terms of Use</a>.</p>
+      </header>
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Definitions</h2>
+        <p><strong>Services:</strong> The &lt;Digitization Knowledge&gt; web application and its contents, including the application programming interface (API).</p>
+        <p><strong>User:</strong> Anyone who accesses or uses the Services.</p>
+        <p class="mb-0"><strong>Data:</strong> Structured metadata stored in records related to digitization resources.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Information We Collect</h2>
+        <p class="mb-0">We collect personal data (such as name, email address, and password) only for account creation and authentication. We do not track or store your search history.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">How We Use Your Information</h2>
+        <p>Personal data is used solely for:</p>
+        <ul class="mb-0">
+          <li>Creating and managing your user account</li>
+          <li>Authenticating your identity when you log in</li>
+          <li>Communicating with you about the Services</li>
+        </ul>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Data Sharing and AI</h2>
+        <p>We do not sell or disclose user data to third parties. Personal data and user-generated content (such as comments) will not be used to train artificial intelligence models.</p>
+        <p class="mb-0">However, we cannot prevent unauthorized third parties from scraping publicly accessible content. For our policies on automated access, see our <a href="{{ h.url_for('digitizationknowledge.terms_of_use') }}">Terms of Use</a>.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">How Your Data Is Stored</h2>
+        <p>User registration is facilitated via Google Forms. Information submitted during registration is stored on Google's platform and is subject to <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>. Only authorized team members have access to this data.</p>
+        <p>The Services are hosted on Amazon Web Services (AWS). Data is processed and stored in accordance with <a href="https://aws.amazon.com/privacy/">AWS's privacy practices</a>.</p>
+        <p class="mb-0">The application uses local session storage in your browser to remember your preferences on search forms. This information is not transmitted to our servers.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Email Communications</h2>
+        <p>Communications using Florida State University (FSU) institutional email addresses are subject to FSU's policies, which treat official correspondence as public record. See <a href="https://www.fsu.edu/misc/policy.html">FSU's policies</a> for details. We will not use FSU provided email for communications that include your personal data.</p>
+        <p class="mb-2">If you prefer not to communicate via FSU email, you may:</p>
+        <ul class="mb-0">
+          <li>Write to us at: <strong>&lt;MAILING_ADDRESS&gt;</strong></li>
+          <li>Email us at: <a href="mailto:alternate@example.com">&lt;NON_FSU_EMAIL&gt;</a> (subject to <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>)</li>
+        </ul>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">User-Generated Content</h2>
+        <p class="mb-0">You may edit your own comments but cannot delete them directly. If you want a comment removed, please contact us at <a href="mailto:contact@example.com">&lt;CONTACT_EMAIL&gt;</a> from the email address associated with your account. For our content moderation policies, see our <a href="{{ h.url_for('digitizationknowledge.terms_of_use') }}">Terms of Use</a>.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Request access to your personal data</li>
+          <li>Request correction of inaccurate data</li>
+          <li>Request deletion of your personal data</li>
+        </ul>
+        <p class="mb-0">To make any of these requests, contact <a href="mailto:contact@example.com">&lt;CONTACT_EMAIL&gt;</a>.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Changes to This Policy</h2>
+        <p class="mb-0">We may update this Privacy Policy at any time by posting a revised version on this website. Your continued use of the Services after changes are posted means you accept the updated policy.</p>
+      </section>
+
+      <hr class="my-4">
+
+      <section class="mb-4">
+        <h2 class="h5 text-secondary mb-3">Contact</h2>
+        <p class="mb-0">If you have questions about this Privacy Policy, please contact <a href="mailto:contact@example.com">&lt;CONTACT_EMAIL&gt;</a>.</p>
+      </section>
+
+      <footer class="mt-5 pt-3 border-top">
+        <p class="text-muted small mb-0">Last updated: <time datetime="2025-01">January 2025</time></p>
+      </footer>
+
+      {% endblock %}
+    </div>
+  </article>
+  {% endblock %}
+</main>
+{% endblock %}
