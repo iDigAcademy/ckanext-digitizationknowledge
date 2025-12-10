@@ -211,7 +211,7 @@ dataset_fields:
     label: label
 
 - field_name: preparations
-  label: Preparations
+  label: Specimen Preparations
   preset: multiple_select
   display_property: dwc:preparations
   choices_helper: scheming_datastore_choices

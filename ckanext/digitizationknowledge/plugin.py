@@ -130,7 +130,7 @@ class DigitizationknowledgePlugin(plugins.SingletonPlugin):
         # Basic facets
         new_facets['task_clusters'] = toolkit._('Task Clusters')
         new_facets['task'] = toolkit._('Tasks')
-        new_facets['preparations'] = toolkit._('Preparations')
+        new_facets['preparations'] = toolkit._('Specimen Preparations')
         new_facets['tags'] = toolkit._('Tags')
         new_facets['digitization_academy_course'] = toolkit._('Digitization Academy Courses')
         new_facets['discipline'] = toolkit._('Discipline')
